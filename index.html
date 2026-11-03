@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>日本語文法 試練の社 〜みんなの日本語75問総仕上げ〜</title>
 
   <style>
@@ -39,9 +39,11 @@
       z-index: 10;
     }
 
-    /* 16:9 Traditional Japanese Shrine Frame */
+    /* ========================================================
+       DEFAULT: PC & iPad UI (Fixed 16:9 Landscape Shrine Frame)
+       ======================================================== */
     .shrine-viewport {
-      width: min(96vw, 170.6vh);
+      width: min(96vw, 170.66vh);
       height: min(54vw, 96vh);
       aspect-ratio: 16 / 9;
       background: #fbf7ee; /* Washi paper */
@@ -66,7 +68,7 @@
     .torii-header {
       background: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%);
       border-bottom: 4px solid #ca8a04;
-      padding: 10px 18px;
+      padding: 8px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -74,38 +76,40 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       position: relative;
       z-index: 25;
+      flex-shrink: 0;
     }
 
     .shrine-logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 800;
       letter-spacing: 2px;
       text-shadow: 1px 1px 2px #000;
     }
 
     .shrine-logo svg {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       fill: #fef08a;
     }
 
     .header-ctrls {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .washi-badge {
       background: #450a0a;
       border: 1px solid #ca8a04;
-      padding: 5px 12px;
+      padding: 4px 12px;
       border-radius: 4px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #fef08a;
       font-weight: 700;
+      white-space: nowrap;
     }
 
     .btn-nav-catalog {
@@ -113,13 +117,14 @@
       color: #38251e;
       border: none;
       border-radius: 4px;
-      padding: 6px 14px;
+      padding: 5px 12px;
       font-family: inherit;
       font-weight: 800;
       cursor: pointer;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       box-shadow: 0 2px 0 #78350f;
       transition: all 0.1s ease;
+      white-space: nowrap;
     }
 
     .btn-nav-catalog:hover { background: #eab308; }
@@ -128,14 +133,13 @@
     /* Main Stage Body */
     .stage-content {
       flex: 1;
-      padding: 16px 28px;
+      padding: 10px 24px;
       display: flex;
       flex-direction: column;
       position: relative;
       overflow-y: auto;
     }
 
-    /* Subtitle & Progress */
     .part-ribbon {
       display: inline-flex;
       align-items: center;
@@ -143,62 +147,85 @@
       align-self: flex-start;
       background: #dc2626;
       color: #ffffff;
-      padding: 4px 14px;
-      font-size: 0.85rem;
+      padding: 3px 12px;
+      font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 1px;
       border-radius: 3px;
       box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
-      margin-bottom: 10px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
     }
 
-    /* Question Tablet */
+    /* Complex Art Viewport */
+    .shrine-illustration-box {
+      width: 100%;
+      height: 136px;
+      background: #18110e;
+      border: 2px solid #b45309;
+      border-radius: 6px;
+      box-shadow: inset 0 0 14px rgba(0,0,0,0.6), 0 3px 8px rgba(0,0,0,0.12);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .shrine-illustration-box svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Question Slate */
     .question-slate {
       background: #ffffff;
       border: 3px double #b45309;
       border-radius: 6px;
-      padding: 18px 24px;
-      font-size: 1.35rem;
+      padding: 10px 16px;
+      font-size: 1.18rem;
       font-weight: 800;
       color: #1c1917;
-      line-height: 1.6;
-      box-shadow: 0 4px 14px rgba(180, 83, 9, 0.08);
-      position: relative;
-      margin-bottom: 14px;
+      line-height: 1.45;
+      box-shadow: 0 4px 10px rgba(180, 83, 9, 0.08);
+      margin-bottom: 8px;
+      flex-shrink: 0;
     }
 
     .question-num {
       color: #991b1b;
-      font-size: 1.45rem;
+      font-size: 1.3rem;
       margin-right: 8px;
       font-family: 'Yuji Boku', serif;
     }
 
-    /* 4-Option Grid (2x2 Japanese Fusuma / Wooden Tile Layout) */
+    /* 4-Option Grid (2x2 Japanese Tile Layout) */
     .choices-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-shrink: 0;
     }
 
     .choice-tile {
       background: #faf4e8;
       border: 2px solid #d97706;
       border-radius: 6px;
-      padding: 14px 18px;
+      padding: 11px 14px;
       font-family: inherit;
-      font-size: 1.15rem;
+      font-size: 1.02rem;
       font-weight: 700;
       color: #38251e;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-align: left;
-      box-shadow: 0 3px 0 #b45309, 0 4px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 0 #b45309, 0 3px 6px rgba(0,0,0,0.05);
       transition: all 0.15s ease;
-      position: relative;
     }
 
     .choice-tile:hover:not([disabled]) {
@@ -213,20 +240,19 @@
     }
 
     .tile-index {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: #991b1b;
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       font-weight: 800;
       flex-shrink: 0;
     }
 
-    /* Wrong Option Shake & Stamp */
     .choice-tile.wrong {
       background: #fee2e2 !important;
       border-color: #dc2626 !important;
@@ -241,12 +267,11 @@
       40%, 80% { transform: translateX(6px); }
     }
 
-    /* Correct Answer Glow & Stamp */
     .choice-tile.correct {
       background: #ecfdf5 !important;
       border-color: #059669 !important;
       color: #065f46 !important;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.4) !important;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.4) !important;
     }
 
     .choice-tile.correct .tile-index {
@@ -259,11 +284,11 @@
       background: #fffbeb;
       border: 3px double #d97706;
       border-radius: 6px;
-      padding: 14px 20px;
+      padding: 10px 16px;
       box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12);
       animation: unrollScroll 0.35s ease-out;
-      margin-top: 4px;
-      margin-bottom: 12px;
+      margin-top: 2px;
+      margin-bottom: 8px;
     }
 
     @keyframes unrollScroll {
@@ -272,20 +297,20 @@
     }
 
     .scroll-title {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: #991b1b;
       display: flex;
       align-items: center;
       gap: 6px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       border-bottom: 1px dashed #ca8a04;
-      padding-bottom: 4px;
+      padding-bottom: 2px;
     }
 
     .scroll-body {
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 0.88rem;
+      line-height: 1.5;
       color: #451a03;
     }
 
@@ -294,14 +319,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 4px;
+      padding-top: 2px;
+      flex-shrink: 0;
     }
 
     .hint-alert {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #b91c1c;
-      min-height: 24px;
+      min-height: 20px;
     }
 
     .btn-shrine-next {
@@ -309,26 +335,24 @@
       color: #ffffff;
       border: 2px solid #ca8a04;
       border-radius: 6px;
-      padding: 10px 24px;
+      padding: 8px 20px;
       font-family: inherit;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 800;
       cursor: pointer;
       box-shadow: 0 4px 0 #7f1d1d, 0 6px 15px rgba(0,0,0,0.2);
       display: none;
       transition: all 0.1s ease;
+      white-space: nowrap;
     }
 
     .btn-shrine-next:hover { background: #b91c1c; }
     .btn-shrine-next:active { transform: translateY(2px); box-shadow: 0 2px 0 #7f1d1d; }
 
-    /* Question Drawer Modal (巻物目録) */
+    /* Catalog Drawer (巻物目録) */
     .catalog-modal {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(18, 10, 8, 0.88);
       display: none;
       justify-content: center;
@@ -346,12 +370,12 @@
     .catalog-board {
       background: #fdfbf7;
       width: 100%;
-      max-width: 760px;
+      max-width: 780px;
       max-height: 85%;
       border: 4px solid #991b1b;
       box-shadow: 0 0 0 3px #ca8a04;
       border-radius: 8px;
-      padding: 20px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
     }
@@ -361,12 +385,12 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #991b1b;
-      padding-bottom: 10px;
-      margin-bottom: 14px;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .catalog-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #991b1b;
     }
@@ -374,9 +398,9 @@
     .catalog-grid {
       display: grid;
       grid-template-columns: repeat(10, 1fr);
-      gap: 8px;
+      gap: 6px;
       overflow-y: auto;
-      padding: 8px 4px;
+      padding: 4px;
       flex: 1;
     }
 
@@ -384,9 +408,9 @@
       background: #f4ede4;
       border: 1px solid #d97706;
       border-radius: 4px;
-      padding: 8px 0;
+      padding: 6px 0;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       color: #38251e;
@@ -401,7 +425,7 @@
       background: #78350f;
       color: #ffffff;
       border: none;
-      padding: 8px 18px;
+      padding: 5px 14px;
       font-family: inherit;
       border-radius: 4px;
       cursor: pointer;
@@ -411,33 +435,30 @@
     /* Start / Finish Splash Screens */
     .splash-screen {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: #fbf7ee;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 30px;
+      padding: 24px;
       z-index: 50;
     }
 
     .splash-title {
       font-family: 'Yuji Boku', serif;
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       color: #991b1b;
-      margin: 10px 0;
+      margin: 8px 0;
       letter-spacing: 4px;
       text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
     }
 
     .splash-subtitle {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: #78350f;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       font-weight: 700;
     }
 
@@ -446,9 +467,9 @@
       color: #ffffff;
       border: 3px solid #ca8a04;
       border-radius: 8px;
-      padding: 16px 40px;
+      padding: 13px 36px;
       font-family: inherit;
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: 2px;
       cursor: pointer;
@@ -458,18 +479,142 @@
 
     .btn-start:active { transform: translateY(3px); box-shadow: 0 3px 0 #7f1d1d; }
 
-    @media (max-width: 720px) {
-      .choices-grid { grid-template-columns: 1fr; }
-      .question-slate { font-size: 1.15rem; }
-      .choice-tile { font-size: 1rem; padding: 10px 14px; }
-      .catalog-grid { grid-template-columns: repeat(5, 1fr); }
-      .splash-title { font-size: 2rem; }
+    /* ========================================================
+       RESPONSIVE ADAPTATION:
+       Mobile Phones (Screen Width <= 600px OR Phone Portrait):
+       Adapts seamlessly to Vertical (9:16) Layout!
+       ======================================================== */
+    @media screen and (max-width: 600px), screen and (max-device-width: 600px) and (orientation: portrait) {
+      .shrine-viewport {
+        width: min(96vw, calc(96vh * 9 / 16));
+        height: min(calc(96vw * 16 / 9), 96vh);
+        aspect-ratio: 9 / 16;
+        max-width: 480px;
+        border-width: 6px;
+        box-shadow: 
+          0 0 0 2px #ca8a04,
+          0 0 0 5px #450a0a,
+          0 12px 30px rgba(0, 0, 0, 0.95);
+      }
+
+      .torii-header {
+        padding: 6px 10px;
+      }
+
+      .shrine-logo {
+        font-size: 0.92rem;
+        gap: 6px;
+      }
+
+      .shrine-logo svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .washi-badge {
+        font-size: 0.72rem;
+        padding: 3px 6px;
+      }
+
+      .btn-nav-catalog {
+        font-size: 0.72rem;
+        padding: 3px 8px;
+      }
+
+      .stage-content {
+        padding: 8px 12px;
+      }
+
+      .part-ribbon {
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        margin-bottom: 5px;
+      }
+
+      .shrine-illustration-box {
+        height: 85px;
+        margin-bottom: 6px;
+      }
+
+      .question-slate {
+        font-size: 1.02rem;
+        padding: 8px 12px;
+        margin-bottom: 6px;
+        line-height: 1.4;
+      }
+
+      .question-num {
+        font-size: 1.15rem;
+      }
+
+      /* Stack choices into 1 vertical column on mobile */
+      .choices-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+
+      .choice-tile {
+        font-size: 0.92rem;
+        padding: 8px 12px;
+      }
+
+      .tile-index {
+        width: 22px;
+        height: 22px;
+        font-size: 0.75rem;
+      }
+
+      .scroll-explanation {
+        padding: 8px 12px;
+        margin-bottom: 6px;
+      }
+
+      .scroll-title {
+        font-size: 0.88rem;
+      }
+
+      .scroll-body {
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .btn-shrine-next {
+        font-size: 0.88rem;
+        padding: 7px 16px;
+      }
+
+      .hint-alert {
+        font-size: 0.78rem;
+      }
+
+      .catalog-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5px;
+      }
+
+      .catalog-title {
+        font-size: 1.05rem;
+      }
+
+      .splash-title {
+        font-size: 2rem;
+      }
+
+      .splash-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .btn-start {
+        font-size: 1.05rem;
+        padding: 11px 28px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Drifting Sakura Canvas -->
+  <!-- Floating Sakura Canvas -->
   <canvas id="sakura-canvas"></canvas>
 
   <div class="shrine-viewport">
@@ -493,6 +638,10 @@
     <main class="stage-content" id="game-stage">
       <div class="part-ribbon" id="part-tag">第1部：自動詞・他動詞・アスペクト</div>
       
+      <!-- High-Detail Thematic SVG Art Box -->
+      <div class="shrine-illustration-box" id="illustration-container"></div>
+
+      <!-- Question Slate -->
       <div class="question-slate" id="question-box">
         <span class="question-num" id="q-num">問1.</span>
         <span id="q-text">問題読み込み中...</span>
@@ -513,21 +662,21 @@
 
     <!-- Start Cover Screen -->
     <div class="splash-screen" id="start-screen">
-      <svg width="90" height="90" viewBox="0 0 24 24" fill="#991b1b" style="margin-bottom: 8px;">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="#991b1b" style="margin-bottom: 8px;">
         <path d="M2,4 H22 V7 H20 V20 H17 V7 H7 V20 H4 V7 H2 Z M5,2 H19 V4 H5 Z"/>
       </svg>
       <h1 class="splash-title">日本語文法 試練の社</h1>
-      <p class="splash-subtitle">『みんなの日本語』標準問題集・過去問 総仕上げ 75問網羅</p>
+      <p class="splash-subtitle">『みんなの日本語』標準問題集・過去問 総仕上げ 75問網羅（自適應和風版）</p>
       <div style="font-size: 0.95rem; color: #78350f; margin-bottom: 20px; line-height: 1.8;">
-        誤答しても正解するまで何度でも挑戦可能。<br>
-        すべての問題に詳細な文法解説・誤答分析が備わっています。
+        電腦・iPad 自動適配 16:9 寬屏；手機自動切換 9:16 豎屏佈局。<br>
+        75道試題均配有高精度和風雅圖與意境標題（無劇透）。答錯可反覆挑戰，答對即展卷研習！
       </div>
       <button class="btn-start" onclick="startGame()">参拝・試練開始</button>
     </div>
 
     <!-- Finish Screen -->
     <div class="splash-screen" id="finish-screen" style="display:none;">
-      <div style="font-size: 4rem; margin-bottom: 6px;">🌸 大願成就 🌸</div>
+      <div style="font-size: 3.5rem; margin-bottom: 6px;">🌸 大願成就 🌸</div>
       <h1 class="splash-title" style="color: #065f46;">全七十五問 満願達成！</h1>
       <p class="splash-subtitle" id="finish-summary"></p>
       <button class="btn-start" onclick="restartGame()">もう一度挑戦する 🔄</button>
@@ -547,7 +696,7 @@
   </div>
 
   <script>
-    // Audio Synthesizer (Traditional Japanese Sounds via Web Audio API)
+    /* Traditional Web Audio Synthesizer */
     let audioCtx = null;
 
     function initAudio() {
@@ -572,7 +721,6 @@
 
     function playHyoshigi() {
       if (!audioCtx) return;
-      // High wooden clack
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
       osc.type = 'sine';
@@ -588,7 +736,7 @@
 
     function playKotoChime() {
       if (!audioCtx) return;
-      const freqs = [523.25, 659.25, 783.99, 1046.50]; // Pentatonic arpeggio
+      const freqs = [523.25, 659.25, 783.99, 1046.50];
       freqs.forEach((f, i) => {
         setTimeout(() => {
           const osc = audioCtx.createOscillator();
@@ -604,6 +752,352 @@
         }, i * 90);
       });
     }
+
+    /* Complex Architectural & Atmospheric Ukiyo-e Scene Builders (Zero Spoilers) */
+    function buildComplexArtwork(themeType, caption) {
+      const defs = `
+        <defs>
+          <linearGradient id="gSkyDawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e1b4b"/><stop offset="50%" stop-color="#701a75"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+          <linearGradient id="gSkyDay" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284c7"/><stop offset="65%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#fef08a"/></linearGradient>
+          <linearGradient id="gGoldMist" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ca8a04" stop-opacity="0.8"/><stop offset="50%" stop-color="#fef08a" stop-opacity="0.95"/><stop offset="100%" stop-color="#ca8a04" stop-opacity="0.8"/></linearGradient>
+          <linearGradient id="gWood" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#78350f"/><stop offset="100%" stop-color="#291205"/></linearGradient>
+          <linearGradient id="gTorii" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7f1d1d"/><stop offset="50%" stop-color="#dc2626"/><stop offset="100%" stop-color="#7f1d1d"/></linearGradient>
+          <pattern id="patSeigaiha" width="20" height="10" patternUnits="userSpaceOnUse"><path d="M 0,10 A 10,10 0 0,1 20,10 M 10,10 A 5,5 0 0,1 20,10 M 0,10 A 5,5 0 0,1 10,10" fill="none" stroke="#fde047" stroke-width="0.7" opacity="0.25"/></pattern>
+        </defs>
+      `;
+
+      let scene = "";
+
+      switch(themeType) {
+        case "storm_wind":
+          scene = `
+            <rect width="480" height="136" fill="#111827"/>
+            <path d="M0,35 Q120,5 240,40 T480,25 L480,95 L0,95 Z" fill="#1f2937" opacity="0.9"/>
+            <line x1="30" y1="15" x2="10" y2="90" stroke="#38bdf8" stroke-width="2" opacity="0.7"/>
+            <line x1="90" y1="10" x2="70" y2="85" stroke="#38bdf8" stroke-width="2.5" opacity="0.75"/>
+            <line x1="160" y1="20" x2="140" y2="95" stroke="#38bdf8" stroke-width="2" opacity="0.7"/>
+            <line x1="240" y1="15" x2="220" y2="90" stroke="#38bdf8" stroke-width="2" opacity="0.7"/>
+            <line x1="320" y1="25" x2="300" y2="95" stroke="#38bdf8" stroke-width="2.5" opacity="0.75"/>
+            <line x1="410" y1="15" x2="390" y2="85" stroke="#38bdf8" stroke-width="2" opacity="0.7"/>
+            <path d="M350,95 Q380,45 420,35" stroke="#15803d" stroke-width="4" fill="none"/>
+            <path d="M360,80 Q400,60 440,65" stroke="#16a34a" stroke-width="3" fill="none"/>
+            <path d="M30,95 L480,95 L480,106 L0,106 Z" fill="#374151"/>
+          `;
+          break;
+
+        case "shoji_interior":
+          scene = `
+            <rect width="480" height="136" fill="#291a10"/>
+            <rect x="0" y="80" width="480" height="56" fill="#4a5320"/>
+            <line x1="0" y1="80" x2="480" y2="80" stroke="#1f2409" stroke-width="3"/>
+            <line x1="0" y1="102" x2="480" y2="102" stroke="#1f2409" stroke-width="1.5"/>
+            <rect x="50" y="8" width="130" height="72" fill="#fdfbf7" stroke="#451a03" stroke-width="3"/>
+            <line x1="50" y1="32" x2="180" y2="32" stroke="#78350f" stroke-width="1.5"/>
+            <line x1="50" y1="56" x2="180" y2="56" stroke="#78350f" stroke-width="1.5"/>
+            <line x1="93" y1="8" x2="93" y2="80" stroke="#78350f" stroke-width="1.5"/>
+            <line x1="136" y1="8" x2="136" y2="80" stroke="#78350f" stroke-width="1.5"/>
+            <rect x="250" y="42" width="40" height="40" rx="3" fill="#ca8a04" opacity="0.9"/>
+            <rect x="254" y="46" width="32" height="32" fill="#fef08a"/>
+            <line x1="270" y1="10" x2="270" y2="42" stroke="#451a03" stroke-width="2"/>
+            <rect x="330" y="55" width="110" height="26" rx="3" fill="url(#gWood)" stroke="#1a0c02" stroke-width="2"/>
+          `;
+          break;
+
+        case "town_street":
+          scene = `
+            <rect width="480" height="136" fill="url(#gSkyDawn)"/>
+            <polygon points="40,95 80,45 160,45 200,95" fill="#271911" stroke="#451a03" stroke-width="2"/>
+            <polygon points="190,95 230,40 320,40 360,95" fill="#1f140d" stroke="#451a03" stroke-width="2"/>
+            <rect x="100" y="60" width="45" height="35" fill="#fef08a" opacity="0.85"/>
+            <line x1="122" y1="60" x2="122" y2="95" stroke="#451a03" stroke-width="1.5"/>
+            <polygon points="0,95 480,95 480,136 0,136" fill="#475569"/>
+            <circle cx="395" cy="55" r="14" fill="#ef4444"/>
+            <rect x="393" y="40" width="4" height="32" fill="#78350f"/>
+            <text x="395" y="59" font-size="10" fill="#ffffff" text-anchor="middle" font-family="'Yuji Boku', serif">宿</text>
+          `;
+          break;
+
+        case "stationery_scroll":
+          scene = `
+            <rect width="480" height="136" fill="#fef9c3"/>
+            <rect x="0" y="0" width="480" height="136" fill="url(#patSeigaiha)"/>
+            <rect x="70" y="16" width="140" height="82" rx="3" fill="#1e3a8a" stroke="#172554" stroke-width="2"/>
+            <line x1="95" y1="16" x2="95" y2="98" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="8,6"/>
+            <rect x="120" y="24" width="70" height="66" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+            <rect x="250" y="26" width="95" height="64" rx="10" fill="#0f172a" stroke="#334155" stroke-width="3"/>
+            <ellipse cx="297" cy="48" rx="35" ry="18" fill="#020617"/>
+            <line x1="230" y1="90" x2="400" y2="30" stroke="#78350f" stroke-width="5" stroke-linecap="round"/>
+            <polygon points="230,90 216,94 225,85" fill="#0f172a"/>
+            <polygon points="340,54 352,46 358,58" fill="#0284c7"/>
+          `;
+          break;
+
+        case "clock_time":
+          scene = `
+            <rect width="480" height="136" fill="#1c1917"/>
+            <rect x="0" y="0" width="480" height="136" fill="url(#patSeigaiha)"/>
+            <circle cx="240" cy="54" r="38" fill="#fef08a" stroke="#ca8a04" stroke-width="4"/>
+            <circle cx="240" cy="54" r="32" fill="#ffffff" stroke="#78350f" stroke-width="1.5"/>
+            <text x="240" y="32" font-size="9" fill="#78350f" text-anchor="middle" font-weight="bold">XII</text>
+            <text x="264" y="57" font-size="9" fill="#78350f" text-anchor="middle" font-weight="bold">III</text>
+            <text x="240" y="80" font-size="9" fill="#78350f" text-anchor="middle" font-weight="bold">VI</text>
+            <text x="216" y="57" font-size="9" fill="#78350f" text-anchor="middle" font-weight="bold">IX</text>
+            <line x1="240" y1="54" x2="240" y2="36" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="240" y1="54" x2="258" y2="54" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="240" cy="54" r="3" fill="#ca8a04"/>
+            <rect x="236" y="10" width="8" height="6" fill="#ca8a04"/>
+            <circle cx="240" cy="8" r="6" fill="none" stroke="#ca8a04" stroke-width="2"/>
+          `;
+          break;
+
+        case "railway_travel":
+          scene = `
+            <rect width="480" height="136" fill="url(#gSkyDawn)"/>
+            <polygon points="240,25 180,85 300,85" fill="#312e81" opacity="0.8"/>
+            <polygon points="240,25 220,48 230,45 240,50 250,45 260,48" fill="#ffffff" opacity="0.9"/>
+            <rect x="0" y="85" width="480" height="51" fill="#475569"/>
+            <circle cx="90" cy="136" r="32" fill="#1e1814"/><circle cx="210" cy="136" r="32" fill="#1e1814"/><circle cx="330" cy="136" r="32" fill="#1e1814"/>
+            <path d="M40,68 L320,68 Q380,68 410,82 L40,82 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="1.5"/>
+            <path d="M40,73 L330,73 Q370,73 395,82 L40,82 Z" fill="#2563eb"/>
+            <path d="M355,71 Q375,72 385,76 L355,76 Z" fill="#0f172a"/>
+            <rect x="100" y="70" width="24" height="6" rx="1" fill="#0f172a"/><rect x="140" y="70" width="24" height="6" rx="1" fill="#0f172a"/><rect x="180" y="70" width="24" height="6" rx="1" fill="#0f172a"/><rect x="220" y="70" width="24" height="6" rx="1" fill="#0f172a"/>
+            <line x1="20" y1="62" x2="220" y2="62" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="16,8" opacity="0.8"/>
+          `;
+          break;
+
+        case "tea_ceremony":
+          scene = `
+            <rect width="480" height="136" fill="#2d2015"/>
+            <rect x="70" y="10" width="75" height="85" fill="#fdfbf7" stroke="#78350f" stroke-width="2"/>
+            <rect x="66" y="8" width="83" height="6" fill="#451a03"/><rect x="64" y="93" width="87" height="6" rx="3" fill="#451a03"/>
+            <text x="107" y="52" font-family="'Yuji Boku', serif" font-size="28" fill="#1c1917" text-anchor="middle">和</text>
+            <path d="M220,75 C210,65 210,50 225,45 C235,42 245,42 255,45 C270,50 270,65 260,75 Z" fill="#18181b" stroke="#000" stroke-width="1.5"/>
+            <rect x="232" y="40" width="16" height="5" fill="#ca8a04"/>
+            <path d="M236,36 Q230,22 238,12" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M320,65 Q340,90 360,65 Z" fill="#047857" stroke="#064e3b" stroke-width="2"/>
+            <ellipse cx="340" cy="65" rx="20" ry="7" fill="#10b981"/>
+            <polygon points="380,55 390,75 375,75" fill="#d97706"/>
+          `;
+          break;
+
+        case "dining_table":
+          scene = `
+            <rect width="480" height="136" fill="#23170f"/>
+            <rect x="0" y="85" width="480" height="51" fill="#4a5320"/>
+            <line x1="0" y1="85" x2="480" y2="85" stroke="#1f2409" stroke-width="3"/>
+            <rect x="90" y="38" width="300" height="68" rx="8" fill="#18181b" stroke="#991b1b" stroke-width="4"/>
+            <ellipse cx="160" cy="68" rx="30" ry="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+            <path d="M130,68 Q160,105 190,68 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+            <path d="M140,68 Q160,50 180,68 Z" fill="#f8fafc"/>
+            <path d="M152,48 Q150,35 156,22" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M165,48 Q168,35 162,22" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M220,68 Q250,105 280,68 Z" fill="#7f1d1d" stroke="#ca8a04" stroke-width="2"/>
+            <ellipse cx="320" cy="55" rx="20" ry="10" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <rect x="150" y="90" width="180" height="4" rx="2" fill="#d97706" transform="rotate(-3, 240, 92)"/>
+          `;
+          break;
+
+        case "library_study":
+          scene = `
+            <rect width="480" height="136" fill="#1e1814"/>
+            <rect x="20" y="10" width="440" height="110" fill="#382214" stroke="#150a04" stroke-width="3"/>
+            <line x1="20" y1="46" x2="460" y2="46" stroke="#150a04" stroke-width="3"/><line x1="20" y1="84" x2="460" y2="84" stroke="#150a04" stroke-width="3"/>
+            <g transform="translate(35, 13)">
+              <rect x="0" y="0" width="16" height="30" fill="#991b1b"/><rect x="18" y="0" width="22" height="30" fill="#1e3a8a"/><rect x="42" y="5" width="18" height="25" fill="#14532d"/><rect x="62" y="0" width="26" height="30" fill="#b45309"/><rect x="90" y="3" width="18" height="27" fill="#581c87"/><line x1="0" y1="8" x2="108" y2="8" stroke="#facc15" stroke-width="0.8"/>
+            </g>
+            <g transform="translate(180, 50)">
+              <rect x="0" y="0" width="28" height="32" fill="#831843"/><rect x="30" y="0" width="20" height="32" fill="#0f766e"/><rect x="52" y="4" width="24" height="28" fill="#a16207"/><rect x="78" y="0" width="18" height="32" fill="#1e293b"/>
+            </g>
+            <circle cx="380" cy="65" r="28" fill="#fef08a" opacity="0.18"/>
+            <path d="M365,75 Q380,50 395,75 Z" fill="#ca8a04"/><rect x="378" y="74" width="4" height="18" fill="#78350f"/><rect x="370" y="91" width="20" height="4" rx="1" fill="#ca8a04"/>
+          `;
+          break;
+
+        case "school":
+          scene = `
+            <rect width="480" height="136" fill="url(#gSkyDay)"/>
+            <rect x="0" y="88" width="480" height="48" fill="#573318"/>
+            <rect x="0" y="85" width="480" height="4" fill="#2d1706"/>
+            <rect x="30" y="10" width="130" height="75" fill="#fdfbf7" stroke="#2d1706" stroke-width="3"/>
+            <line x1="30" y1="35" x2="160" y2="35" stroke="#78350f" stroke-width="1.5"/>
+            <line x1="30" y1="60" x2="160" y2="60" stroke="#78350f" stroke-width="1.5"/>
+            <path d="M10,15 Q60,25 90,45" stroke="#451a03" stroke-width="2.5" fill="none"/>
+            <circle cx="55" cy="22" r="4.5" fill="#f472b6"/><circle cx="75" cy="36" r="5" fill="#fb7185"/>
+            <rect x="230" y="55" width="180" height="35" rx="3" fill="url(#gWood)" stroke="#1a0c02" stroke-width="2"/>
+            <rect x="260" y="88" width="16" height="40" fill="#2d1706"/><rect x="375" y="88" width="16" height="40" fill="#2d1706"/>
+            <rect x="265" y="47" width="50" height="8" rx="2" fill="#3b82f6"/>
+          `;
+          break;
+
+        case "art_studio":
+          scene = `
+            <rect width="480" height="136" fill="#291a10"/>
+            <rect x="80" y="15" width="120" height="80" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/>
+            <path d="M100,75 Q130,35 150,65 T180,45" stroke="#991b1b" stroke-width="4" fill="none"/>
+            <circle cx="160" cy="35" r="14" fill="#dc2626"/>
+            <line x1="250" y1="20" x2="230" y2="95" stroke="#78350f" stroke-width="5"/>
+            <line x1="290" y1="20" x2="310" y2="95" stroke="#78350f" stroke-width="5"/>
+            <line x1="270" y1="15" x2="270" y2="95" stroke="#78350f" stroke-width="4"/>
+            <rect x="240" y="55" width="60" height="6" fill="#ca8a04"/>
+          `;
+          break;
+
+        case "hospital_clinic":
+          scene = `
+            <rect width="480" height="136" fill="#1c1917"/>
+            <rect x="40" y="20" width="400" height="85" fill="#2d2218" stroke="#543822" stroke-width="2"/>
+            <rect x="80" y="35" width="26" height="40" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+            <rect x="130" y="30" width="30" height="45" rx="4" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="210" cy="55" r="18" fill="#ca8a04"/>
+            <path d="M270,68 C260,50 290,50 280,68 Z" fill="#991b1b"/>
+            <rect x="320" y="42" width="60" height="32" rx="3" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+            <line x1="335" y1="58" x2="365" y2="58" stroke="#991b1b" stroke-width="2"/>
+          `;
+          break;
+
+        case "fuji_scenery":
+          scene = `
+            <rect width="480" height="136" fill="url(#gSkyDay)"/>
+            <circle cx="160" cy="52" r="32" fill="#dc2626"/>
+            <polygon points="320,18 200,105 440,105" fill="#1e3a8a"/>
+            <polygon points="320,18 280,55 295,50 310,60 325,52 340,62 360,55" fill="#ffffff"/>
+            <polygon points="90,70 70,95 110,95" fill="#064e3b"/><polygon points="90,55 75,75 105,75" fill="#047857"/>
+            <path d="M0,88 Q60,78 120,88 T240,88 L240,105 L0,105 Z" fill="url(#gGoldMist)"/>
+          `;
+          break;
+
+        case "temple_pagoda":
+          scene = `
+            <rect width="480" height="136" fill="url(#gSkyDawn)"/>
+            <polygon points="120,20 100,32 140,32" fill="#18181b"/>
+            <polygon points="120,32 95,45 145,45" fill="#18181b"/>
+            <polygon points="120,45 90,60 150,60" fill="#18181b"/>
+            <polygon points="120,60 85,76 155,76" fill="#18181b"/>
+            <rect x="105" y="76" width="30" height="24" fill="#18181b"/>
+            <path d="M0,100 Q140,65 280,100 T480,95 L480,136 L0,136 Z" fill="#064e3b"/>
+            <circle cx="340" cy="45" r="26" fill="#facc15" opacity="0.9"/>
+          `;
+          break;
+
+        case "music":
+          scene = `
+            <rect width="480" height="136" fill="url(#gSkyDawn)"/>
+            <path d="M0,45 Q120,20 240,55 T480,45" stroke="#fef08a" stroke-width="1" fill="none" opacity="0.6"/>
+            <path d="M0,52 Q120,27 240,62 T480,52" stroke="#fef08a" stroke-width="1" fill="none" opacity="0.6"/>
+            <path d="M80,95 L80,50 Q160,20 280,60 L280,95 Z" fill="#09090b" stroke="#ca8a04" stroke-width="2"/>
+            <rect x="90" y="80" width="180" height="18" fill="#ffffff" stroke="#000" stroke-width="1"/>
+            <text x="350" y="65" font-size="44" fill="#facc15" filter="drop-shadow(0 0 6px #ca8a04)">𝄞</text>
+            <text x="405" y="42" font-size="24" fill="#fef08a">♪</text>
+            <text x="425" y="70" font-size="28" fill="#fef08a">♫</text>
+          `;
+          break;
+
+        default:
+          scene = `
+            <rect width="480" height="136" fill="url(#gSkyDawn)"/>
+            <path d="M40,95 L65,30 L90,95 Z" fill="#064e3b" opacity="0.8"/>
+            <path d="M160,32 Q240,24 320,32 L326,38 Q240,30 154,38 Z" fill="url(#gTorii)"/>
+            <rect x="175" y="46" width="130" height="7" fill="url(#gTorii)"/>
+            <rect x="195" y="32" width="12" height="70" fill="url(#gTorii)"/>
+            <rect x="273" y="32" width="12" height="70" fill="url(#gTorii)"/>
+          `;
+          break;
+      }
+
+      return `
+        <svg viewBox="0 0 480 136" xmlns="http://www.w3.org/2000/svg">
+          ${defs}
+          ${scene}
+          <rect x="0" y="0" width="480" height="4" fill="url(#gGoldMist)"/>
+          <rect x="0" y="106" width="480" height="30" fill="#2d1706" opacity="0.95"/>
+          <line x1="0" y1="106" x2="480" y2="106" stroke="#ca8a04" stroke-width="2"/>
+          <g transform="translate(14, 110)">
+            <rect width="18" height="18" rx="2" fill="#991b1b" stroke="#fef08a" stroke-width="1"/>
+            <text x="9" y="13.5" font-family="'Yuji Boku', serif" font-size="11" fill="#ffffff" text-anchor="middle">雅</text>
+          </g>
+          <text x="240" y="125" font-family="'Shippori Mincho', serif" font-size="12" fill="#fef08a" text-anchor="middle" font-weight="700" letter-spacing="3">${caption}</text>
+        </svg>
+      `;
+    }
+
+    /* 75 Questions Visual Metadata Mapping (Art Atmosphere & Spoiler-Free Poetic Title) */
+    const questionVisualMeta = {
+      1:  { theme: "storm_wind",        caption: "【 疾 風 と 扉 】" },
+      2:  { theme: "shoji_interior",     caption: "【 窓 辺 の 佇 ま い 】" },
+      3:  { theme: "shoji_interior",     caption: "【 行 灯 の 灯 火 】" },
+      4:  { theme: "shoji_interior",     caption: "【 壁 面 の 暦 】" },
+      5:  { theme: "shoji_interior",     caption: "【 縁 側 の 腰 掛 け 】" },
+      6:  { theme: "town_street",        caption: "【 暖 簾 と 旅 籠 】" },
+      7:  { theme: "stationery_scroll",  caption: "【 小 箱 の 宝 物 】" },
+      8:  { theme: "clock_time",         caption: "【 約 束 の 刻 限 】" },
+      9:  { theme: "town_street",        caption: "【 暮 れ 行 く 街 並 み 】" },
+      10: { theme: "railway_travel",     caption: "【 届 き し 荷 嵩 】" },
+      11: { theme: "shoji_interior",     caption: "【 袂 と 鍵 】" },
+      12: { theme: "shoji_interior",     caption: "【 盥 と 水 際 】" },
+      13: { theme: "shoji_interior",     caption: "【 黄 昏 の 明 か り 】" },
+      14: { theme: "stationery_scroll",  caption: "【 墨 書 の 掲 示 】" },
+      15: { theme: "tea_ceremony",       caption: "【 茶 釜 の 湯 沸 き 】" },
+      16: { theme: "railway_travel",     caption: "【 混 雑 の 汽 車 】" },
+      17: { theme: "shoji_interior",     caption: "【 留 守 居 の 殿 舎 】" },
+      18: { theme: "storm_wind",        caption: "【 驟 雨 と 傘 】" },
+      19: { theme: "stationery_scroll",  caption: "【 試 筆 の 巻 物 】" },
+      20: { theme: "library_study",      caption: "【 学 び の 導 き 】" },
+      21: { theme: "shoji_interior",     caption: "【 幼 き 日 の 庭 】" },
+      22: { theme: "clock_time",         caption: "【 寿 ぎ の 贈 り 物 】" },
+      23: { theme: "art_studio",         caption: "【 丹 青 の 絵 師 】" },
+      24: { theme: "shoji_interior",     caption: "【 箒 と 拭 き 掃 じ 】" },
+      25: { theme: "town_street",        caption: "【 車 馬 と 荷 駄 】" },
+      26: { theme: "library_study",      caption: "【 執 務 の 機 密 】" },
+      27: { theme: "stationery_scroll",  caption: "【 賜 り し 書 物 】" },
+      28: { theme: "town_street",        caption: "【 旅 装 の 手 伝 い 】" },
+      29: { theme: "library_study",      caption: "【 訪 問 の 伺 い 】" },
+      30: { theme: "shoji_interior",     caption: "【 遠 方 の 縁 者 】" },
+      31: { theme: "dining_table",       caption: "【 盃 と 徳 利 】" },
+      32: { theme: "stationery_scroll",  caption: "【 裁 ち 鋏 の 業 】" },
+      33: { theme: "library_study",      caption: "【 独 坐 の 愉 し み 】" },
+      34: { theme: "town_street",        caption: "【 健 脚 の 道 程 】" },
+      35: { theme: "shoji_interior",     caption: "【 門 出 の 戸 締 ま り 】" },
+      36: { theme: "temple_pagoda",      caption: "【 異 郷 の 独 り 居 】" },
+      37: { theme: "dining_table",       caption: "【 甘 味 と 養 生 】" },
+      38: { theme: "stationery_scroll",  caption: "【 漢 字 の 訓 読 】" },
+      39: { theme: "temple_pagoda",      caption: "【 古 刹 の 歴 史 】" },
+      40: { theme: "art_studio",         caption: "【 人 気 の 浮 世 絵 】" },
+      41: { theme: "shoji_interior",     caption: "【 盤 上 の 勝 負 】" },
+      42: { theme: "clock_time",         caption: "【 会 合 の 日 取 り 】" },
+      43: { theme: "dining_table",       caption: "【 庖 丁 の 技 】" },
+      44: { theme: "music",              caption: "【 雅 楽 の 調 べ 】" },
+      45: { theme: "town_street",        caption: "【 飛 脚 と 宿 場 】" },
+      46: { theme: "library_study",      caption: "【 大 志 と 門 出 】" },
+      47: { theme: "dining_table",       caption: "【 食 後 の 薬 湯 】" },
+      48: { theme: "dining_table",       caption: "【 銘 菓 の 膳 】" },
+      49: { theme: "storm_wind",        caption: "【 雨 雲 の 気 配 】" },
+      50: { theme: "railway_travel",     caption: "【 汽 車 の 笛 】" },
+      51: { theme: "hospital_clinic",    caption: "【 医 仙 の 戒 め 】" },
+      52: { theme: "town_street",        caption: "【 変 化 の 世 相 】" },
+      53: { theme: "dining_table",       caption: "【 汁 椀 の 温 め 】" },
+      54: { theme: "library_study",      caption: "【 字 引 の 難 解 】" },
+      55: { theme: "railway_travel",     caption: "【 旅 駅 の 到 着 】" },
+      56: { theme: "fuji_scenery",       caption: "【 東 海 道 の 旅 】" },
+      57: { theme: "fuji_scenery",       caption: "【 春 爛 漫 の 桜 】" },
+      58: { theme: "storm_wind",        caption: "【 雨 催 い の 空 】" },
+      59: { theme: "school",             caption: "【 通 学 の 石 段 】" },
+      60: { theme: "shoji_interior",     caption: "【 出 立 の 障 子 】" },
+      61: { theme: "railway_travel",     caption: "【 旅 路 の 買 い 物 】" },
+      62: { theme: "library_study",      caption: "【 師 の 訓 え 】" },
+      63: { theme: "library_study",      caption: "【 算 盤 と 商 い 】" },
+      64: { theme: "town_street",        caption: "【 街 の 賑 わ い 】" },
+      65: { theme: "clock_time",         caption: "【 絡 繰 り の 函 】" },
+      66: { theme: "railway_travel",     caption: "【 年 輪 と 走 行 】" },
+      67: { theme: "stationery_scroll",  caption: "【 登 竜 門 の 桜 】" },
+      68: { theme: "hospital_clinic",    caption: "【 完 全 の 快 復 】" },
+      69: { theme: "school",             caption: "【 講 義 の 熱 誠 】" },
+      70: { theme: "shoji_interior",     caption: "【 閉 ざ さ れ し 扉 】" },
+      71: { theme: "tea_ceremony",       caption: "【 割 れ し 器 】" },
+      72: { theme: "clock_time",         caption: "【 刻 限 の 焦 り 】" },
+      73: { theme: "town_street",        caption: "【 往 来 の 中 央 】" },
+      74: { theme: "school",             caption: "【 教 本 の 配 布 】" },
+      75: { theme: "hospital_clinic",    caption: "【 発 熱 の 診 察 】" }
+    };
 
     // ALL 75 QUESTIONS DATASET WITH IN-DEPTH GRAMMAR BREAKDOWNS
     const questions = [
@@ -627,596 +1121,596 @@
       {
         id: 3,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "出かける とき、部屋の 電気が （  ）のを たしかめて ください。[cite: 7]",
+        q: "出かける とき、部屋の 電気が （  ）のを たしかめて ください。",
         options: ["きえて いる", "けして いる", "きえて ある", "けして ある"],
         ans: 1,
-        exp: "【正解：1 (きえて いる)】<br>「電気が」と助詞『が』を伴い、電気が消えた状態が継続している客観的事実を表すため、【自動詞て形＋いる】（消えている）が適切です[cite: 7]。<br>・「消している」は人が電気を消す動作の最中[cite: 7]。<br>・「消えてある」という文型は存在しません（てあるは他動詞接続）[cite: 7]。"
+        exp: "【正解：1 (きえて いる)】<br>「電気が」と助詞『が』を伴い、電気が消えた状態が継続している客観的事実を表すため、【自動詞て形＋いる】（消えている）が適切です。<br>・「消している」は人が電気を消す動作の最中。<br>・「消えてある」という文型は存在しません（てあるは他動詞接続）。"
       },
       {
         id: 4,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "予定が すぐ わかるように、カレンダーが 壁に （  ）。[cite: 7]",
+        q: "予定が すぐ わかるように、カレンダーが 壁に （  ）。",
         options: ["かけて います", "かかって います", "かけて あります", "かかって あります"],
         ans: 3,
-        exp: "【正解：3 (かけて あります)】<br>「〜ように」という目的のために、誰かが意図的に準備した結果の状態が残っていることを示す文型は【他動詞て形＋あります】（〜が…てあります）です[cite: 7]。したがって他動詞「掛ける」を用いた『掛けてあります』が正解[cite: 7]。"
+        exp: "【正解：3 (かけて あります)】<br>「〜ように」という目的のために、誰かが意図的に準備した結果の状態が残っていることを示す文型は【他動詞て形＋あります】（〜が…てあります）です。したがって他動詞「掛ける」を用いた『掛けてあります』が正解。"
       },
       {
         id: 5,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "この いすは 足が （  ）いますから、すわらないで ください。[cite: 7]",
+        q: "この いすは 足が （  ）いますから、すわらないで ください。",
         options: ["こわして", "こわれて", "こわされて", "こわしてあって"],
         ans: 2,
-        exp: "【正解：2 (こわれて)】<br>いすが偶発的・無意志に損壊した結果の状態を表すため、【自動詞て形＋います】（壊れています）を用います[cite: 7]。「壊しています」は誰かが今まさに壊している動作進行形になってしまいます[cite: 7]。"
+        exp: "【正解：2 (こわれて)】<br>いすが偶発的・無意志に損壊した結果の状態を表すため、【自動詞て形＋います】（壊れています）を用います。「壊しています」は誰かが今まさに壊している動作進行形になってしまいます。"
       },
       {
         id: 6,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "みんなで 話し合って、来週 行く 店を （  ）。[cite: 7]",
+        q: "みんなで 話し合って、来週 行く 店を （  ）。",
         options: ["きまりました", "きめました", "きまられました", "きまってあります"],
         ans: 2,
-        exp: "【正解：2 (きめました)】<br>目的語が「店を」と助詞『を』をとる意志的な動作なので、他動詞『決める（決めました）』が正解です[cite: 7]。自動詞「決まる」は「店が決まりました」のように主語が『が』をとります[cite: 7]。"
+        exp: "【正解：2 (きめました)】<br>目的語が「店を」と助詞『を』をとる意志的な動作なので、他動詞『決める（決めました）』が正解です。自動詞「決まる」は「店が決まりました」のように主語が『が』をとります。"
       },
       {
         id: 7,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "手を 洗う ときは、大切な 指輪を （  ）ほうが いいですよ。[cite: 7]",
+        q: "手を 洗う ときは、大切な 指輪を （  ）ほうが いいですよ。",
         options: ["はずれた", "はずした", "はずれている", "はずしてある"],
         ans: 2,
-        exp: "【正解：2 (はずした)】<br>助詞が「指輪を」なので他動詞『外す（はずす）』をとります[cite: 7]。アドバイスを与える文型【動詞た形＋ほうがいい】に接続して『外したほうがいい』となります[cite: 7]。「外れる」は自動詞です[cite: 7]。"
+        exp: "【正解：2 (はずした)】<br>助詞が「指輪を」なので他動詞『外す（はずす）』をとります。アドバイスを与える文型【動詞た形＋ほうがいい】に接続して『外したほうがいい』となります。「外れる」は自動詞です。"
       },
       {
         id: 8,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "急用が できたので、友達に 約束の 時間を （  ）もらった。[cite: 7]",
+        q: "急用が できたので、友達に 約束の 時間を （  ）もらった。",
         options: ["かわって", "かえて", "かわられて", "かえられて"],
         ans: 2,
-        exp: "【正解：2 (かえて)】<br>「時間を」と目的語をとる他動詞『変える』のて形に、恩恵の授受表現「〜てもらう」が接続して『変えてもらった』となります[cite: 7]。「変わる」は自動詞です[cite: 7]。"
+        exp: "【正解：2 (かえて)】<br>「時間を」と目的語をとる他動詞『変える』のて形に、恩恵の授受表現「〜てもらう」が接続して『変えてもらった』となります。「変わる」は自動詞です。"
       },
       {
         id: 9,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "この まちは 若い 人が 減って、子どもの 数が （  ）います。[cite: 7]",
+        q: "この まちは 若い 人が 減って、子どもの 数が （  ）います。",
         options: ["へらして", "へって", "へらされて", "へりて"],
         ans: 2,
-        exp: "【正解：2 (へって)】<br>「数が」と助詞『が』をとり、数量が自発的・自然に減少する変化を表すため、第1グループ自動詞『減る（へる ➔ 減っています）』を用います[cite: 7]。「減らす」は他動詞です[cite: 7]。"
+        exp: "【正解：2 (へって)】<br>「数が」と助詞『が』をとり、数量が自発的・自然に減少する変化を表すため、第1グループ自動詞『減る（へる ➔ 減っています）』を用います。「減らす」は他動詞です。"
       },
       {
         id: 10,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "昨日 注文した レコードが、もう 家に （  ）。[cite: 7]",
+        q: "昨日 注文した レコードが、もう 家に （  ）。",
         options: ["とどけました", "とどきました", "とどけられました", "とどかれていました"],
         ans: 2,
-        exp: "【正解：2 (とどきました)】<br>荷物・レコード自体が目的地に客観的に到達した状態を表すため、自動詞『届く（とどきました）』が適切です[cite: 7]。「届ける」は配達人が物を届ける他動詞です[cite: 7]。"
+        exp: "【正解：2 (とどきました)】<br>荷物・レコード自体が目的地に客観的に到達した状態を表すため、自動詞『届く（とどきました）』が適切です。「届ける」は配達人が物を届ける他動詞です。"
       },
       {
         id: 11,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "ポケットに 穴が あいて いたので、鍵が （  ）しまいました。[cite: 7]",
+        q: "ポケットに 穴が あいて いたので、鍵が （  ）しまいました。",
         options: ["おとしました", "おちて", "おとされて", "おとしてあって"],
         ans: 2,
-        exp: "【正解：2 (おちて)】<br>主語が「鍵が」であり、自然・過失によって落下した事態を遺憾の「〜てしまう」で表すため、自動詞『落ちる（落ちてしまいました）』を用います[cite: 7]。「落とす」は他動詞です[cite: 7]。"
+        exp: "【正解：2 (おちて)】<br>主語が「鍵が」であり、自然・過失によって落下した事態を遺憾の「〜てしまう」で表すため、自動詞『落ちる（落ちてしまいました）』を用います。「落とす」は他動詞です。"
       },
       {
         id: 12,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "洗濯する 服を 洗濯機に （  ）ください。[cite: 7]",
+        q: "洗濯する 服を 洗濯機に （  ）ください。",
         options: ["はいって", "いれて", "はいられて", "はいってあって"],
         ans: 2,
-        exp: "【正解：2 (いれて)】<br>「服を」と目的語をとるため、他動詞『入れる（いれてください）』を用います[cite: 7]。「入る（はいる）」は自動詞です[cite: 7]。"
+        exp: "【正解：2 (いれて)】<br>「服を」と目的語をとるため、他動詞『入れる（いれてください）』を用います。「入る（はいる）」は自動詞です。"
       },
       {
         id: 13,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "外が 暗く なったので、部屋の 電気を （  ）ましょう。[cite: 7]",
+        q: "外が 暗く なったので、部屋の 電気を （  ）ましょう。",
         options: ["つき", "つけ", "ついて", "つかれて"],
         ans: 2,
-        exp: "【正解：2 (つけ)】<br>「電気を」と目的語をとり、話し手の意志的勧誘「〜ましょう」に接続するため、他動詞『つける（つけましょう）』が正解です[cite: 7]。「つく」は自動詞です[cite: 7]。"
+        exp: "【正解：2 (つけ)】<br>「電気を」と目的語をとり、話し手の意志的勧誘「〜ましょう」に接続するため、他動詞『つける（つけましょう）』が正解です。「つく」は自動詞です。"
       },
       {
         id: 14,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "教室の 前の 黒板に、今日の 予定が （  ）。[cite: 7]",
+        q: "教室の 前の 黒板に、今日の 予定が （  ）。",
         options: ["書いて あります", "書いて います", "書かれて います", "書いて おきます"],
         ans: 1,
-        exp: "【正解：1 (書いて あります)】<br>人の意図的な行為によって行われた掲示・記録状態が残っていることを示す文型は【他動詞て形＋あります】（書いてあります）です[cite: 7]。「書いておきます」は未来の準備動作を表すため現在完了状態には不適[cite: 7]。"
+        exp: "【正解：1 (書いて あります)】<br>人の意図的な行為によって行われた掲示・記録状態が残っていることを示す文型は【他動詞て形＋あります】（書いてあります）です。「書いておきます」は未来の準備動作を表すため現在完了状態には不適。"
       },
       {
         id: 15,
         part: "第1部：自動詞・他動詞・アスペクト",
-        q: "お湯が （  ）から、おいしい お茶を いれましょう。[cite: 7]",
+        q: "お湯が （  ）から、おいしい お茶を いれましょう。",
         options: ["わかした", "わいた", "わかしてある", "わかせた"],
         ans: 2,
-        exp: "【正解：2 (わいた)】<br>「お湯が」と自動詞の主語をとるため、自動詞『沸く（わいた）』が正解です[cite: 7]。「沸かす（わかす）」は他動詞（お湯を沸かす）です[cite: 7]。"
+        exp: "【正解：2 (わいた)】<br>「お湯が」と自動詞の主語をとるため、自動詞『沸く（わいた）』が正解です。「沸かす（わかす）」は他動詞（お湯を沸かす）です。"
       },
 
       // 第2部：受身・使役・授受表現・敬語 (問16〜問30)
       {
         id: 16,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "満員電車の中で、知らない 人に 足を （  ）痛かったです。[cite: 7]",
+        q: "満員電車の中で、知らない 人に 足を （  ）痛かったです。",
         options: ["ふみました", "ふまれました", "ふませました", "ふんでくれました"],
         ans: 2,
-        exp: "【正解：2 (ふまれました)】<br>他人に自分の身体の一部を踏まれて被害・苦痛を受けたことを表す【迷惑受身（間接受身）】です[cite: 7]。【人に＋身体／物を＋他動詞受身形】➔「足を踏まれました」[cite: 7]。「ふませました」は使役（踏むことを許した）になってしまいます[cite: 7]。"
+        exp: "【正解：2 (ふまれました)】<br>他人に自分の身体の一部を踏まれて被害・苦痛を受けたことを表す【迷惑受身（間接受身）】です。【人に＋身体／物を＋他動詞受身形】➔「足を踏まれました」。「ふませました」は使役（踏むことを許した）になってしまいます。"
       },
       {
         id: 17,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "留守の 間に、泥棒に パソコンを （  ）しまいました。[cite: 7]",
+        q: "留守の 間に、泥棒に パソコンを （  ）しまいました。",
         options: ["とらせて", "とられて", "とってもらって", "とってくれて"],
         ans: 2,
-        exp: "【正解：2 (とられて)】<br>泥棒に物を盗まれた被害・迷惑受身文です[cite: 7]。【人に＋物を＋取られる】[cite: 7]。「取らせて」は使役、「とってもらって」は恩恵になってしまうため不適[cite: 7]。"
+        exp: "【正解：2 (とられて)】<br>泥棒に物を盗まれた被害・迷惑受身文です。【人に＋物を＋取られる】。「取らせて」は使役、「とってもらって」は恩恵になってしまうため不適。"
       },
       {
         id: 18,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "傘を 持たずに 出かけて、途中で 雨に （  ）大変でした。[cite: 7]",
+        q: "傘を 持たずに 出かけて、途中で 雨に （  ）大変でした。",
         options: ["ふって", "ふられて", "ふらせて", "ふりて"],
         ans: 2,
-        exp: "【正解：2 (ふられて)】<br>自動詞「降る」を用いた典型的な迷惑受身文【雨に降られて】です[cite: 7]。雨が降ることで自分が困った・迷惑を被ったニュアンスを表します[cite: 7]。"
+        exp: "【正解：2 (ふられて)】<br>自動詞「降る」を用いた典型的な迷惑受身文【雨に降られて】です。雨が降ることで自分が困った・迷惑を被ったニュアンスを表します。"
       },
       {
         id: 19,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "一生懸命 練習した 作文を、先生に （  ）とても うれしかったです。[cite: 7]",
+        q: "一生懸命 練習した 作文を、先生に （  ）とても うれしかったです。",
         options: ["ほめられて", "ほめさせて", "ほめて", "ほめられてもらって"],
         ans: 1,
-        exp: "【正解：1 (ほめられて)】<br>先生から好意的な評価・称賛を受けた直接受身文【先生に褒められて】です[cite: 7]。「ほめさせて」は使役（先生に褒めるよう強制した）になり不自然です[cite: 7]。"
+        exp: "【正解：1 (ほめられて)】<br>先生から好意的な評価・称賛を受けた直接受身文【先生に褒められて】です。「ほめさせて」は使役（先生に褒めるよう強制した）になり不自然です。"
       },
       {
         id: 20,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "日本語の 発音を、先生に （  ）いただきました。[cite: 7]",
+        q: "日本語の 発音を、先生に （  ）いただきました。",
         options: ["直して", "直されて", "直させて", "お直しして"],
         ans: 1,
-        exp: "【正解：1 (直して)】<br>目上の人（先生）から恩恵的な行為をしてもらう敬語文型は【動詞て形＋いただきました】です[cite: 7]。動詞「直す」のて形『直して』が接続します[cite: 7]。"
+        exp: "【正解：1 (直して)】<br>目上の人（先生）から恩恵的な行為をしてもらう敬語文型は【動詞て形＋いただきました】です。動詞「直す」のて形『直して』が接続します。"
       },
       {
         id: 21,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "妹（  ）泣かせて しまって、母に ひどく 怒られました。[cite: 7]",
+        q: "妹（  ）泣かせて しまって、母に ひどく 怒られました。",
         options: ["に", "を", "が", "と"],
         ans: 2,
-        exp: "【正解：2 (を)】<br>自動詞（泣く）の使役文では、動作主（泣く人）を助詞『を』で表します（妹を泣かせる）[cite: 7]。「に」を使うのは他動詞の使役文（例：妹に本を読ませる）です[cite: 7]。"
+        exp: "【正解：2 (を)】<br>自動詞（泣く）の使役文では、動作主（泣く人）を助詞『を』で表します（妹を泣かせる）。「に」を使うのは他動詞の使役文（例：妹に本を読ませる）です。"
       },
       {
         id: 22,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "祖父は 私の 誕生日に、お土産（  ）腕時計を くれました。[cite: 7]",
+        q: "祖父は 私の 誕生日に、お土産（  ）腕時計を くれました。",
         options: ["に", "で", "を", "と"],
         ans: 1,
-        exp: "【正解：1 (に)】<br>名詞＋『に』で、目的・役割・位置づけ（〜として／記念として）を表します（「お土産に腕時計をくれました」）[cite: 7]。"
+        exp: "【正解：1 (に)】<br>名詞＋『に』で、目的・役割・位置づけ（〜として／記念として）を表します（「お土産に腕時計をくれました」）。"
       },
       {
         id: 23,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "この 美しい 絵は、200年前に 有名な 画家（  ）描かれました。[cite: 7]",
+        q: "この 美しい 絵は、200年前に 有名な 画家（  ）描かれました。",
         options: ["に", "から", "によって", "で"],
         ans: 3,
-        exp: "【正解：3 (によって)】<br>芸術作品の創作・建造・発明・発見などの受身文において、客観的な行為者は助詞「に」ではなく『によって』で表します[cite: 7]。"
+        exp: "【正解：3 (によって)】<br>芸術作品の創作・建造・発明・発見などの受身文において、客観的な行為者は助詞「に」ではなく『によって』で表します。"
       },
       {
         id: 24,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "子どもの ころ、毎日 母に 部屋を 掃除（  ）。[cite: 7]",
+        q: "子どもの ころ、毎日 母に 部屋を 掃除（  ）。",
         options: ["されました", "させられました", "してもらいました", "してあげました"],
         ans: 2,
-        exp: "【正解：2 (させられました)】<br>嫌なこと・自分の本意ではないのに強制されて行った不本意な気持ちを表す【使役受身文】（掃除させられました）です[cite: 7]。"
+        exp: "【正解：2 (させられました)】<br>嫌なこと・自分の本意ではないのに強制されて行った不本意な気持ちを表す【使役受身文】（掃除させられました）です。"
       },
       {
         id: 25,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "すみません、この 荷物を 車まで 運ぶのを 手伝って （  ）か。[cite: 7]",
+        q: "すみません、この 荷物を 車まで 運ぶのを 手伝って （  ）か。",
         options: ["あげませんか", "もらえませんか", "やりませんか", "くださらなくて"],
         ans: 2,
-        exp: "【正解：2 (もらえませんか)】<br>相手に手伝いを依頼・請う表現は【〜てもらえませんか】（または〜ていただけませんか）です[cite: 7]。「あげませんか」はこちらから相手に手助けを提案する表現[cite: 7]。"
+        exp: "【正解：2 (もらえませんか)】<br>相手に手伝いを依頼・請う表現は【〜てもらえませんか】（または〜ていただけませんか）です。「あげませんか」はこちらから相手に手助けを提案する表現。"
       },
       {
         id: 26,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "社長が 私に 新しい プロジェクトの 資料を （  ）。[cite: 7]",
+        q: "社長が 私に 新しい プロジェクトの 資料を （  ）。",
         options: ["くれました", "くださいました", "いただきました", "もらいました"],
         ans: 2,
-        exp: "【正解：2 (くださいました)】<br>目上（社長）が自分に対して物をくれる動作なので、「くれる」の尊敬語である『くださいました』を用います[cite: 7]。「いただきました」は自分が主語のときの謙譲語です[cite: 7]。"
+        exp: "【正解：2 (くださいました)】<br>目上（社長）が自分に対して物をくれる動作なので、「くれる」の尊敬語である『くださいました』を用います。「いただきました」は自分が主語のときの謙譲語です。"
       },
       {
         id: 27,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "（私は）田中先生に すばらしい 本を （  ）。[cite: 7]",
+        q: "（私は）田中先生に すばらしい 本を （  ）。",
         options: ["いただきました", "くださいました", "あげました", "やりました"],
         ans: 1,
-        exp: "【正解：1 (いただきました)】<br>主語が「私」であり、目上（田中先生）から物を受け取る動作なので、「もらう」の謙譲語『いただきました』が正解です[cite: 7]。"
+        exp: "【正解：1 (いただきました)】<br>主語が「私」であり、目上（田中先生）から物を受け取る動作なので、「もらう」の謙譲語『いただきました』が正解です。"
       },
       {
         id: 28,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "先生、重そうな お荷物ですね。私が （  ）しましょうか。[cite: 7]",
+        q: "先生、重そうな お荷物ですね。私が （  ）しましょうか。",
         options: ["お持ちに", "お持ち", "持たれ", "ご持ち"],
         ans: 2,
-        exp: "【正解：2 (お持ち)】<br>自分の動作をへりくだって相手に手助けを申し出る謙譲表現【お＋ます形語幹＋する】（お持ちしましょうか）です[cite: 7]。「お持ちになる」は相手の動作を高める尊敬語[cite: 7]。"
+        exp: "【正解：2 (お持ち)】<br>自分の動作をへりくだって相手に手助けを申し出る謙譲表現【お＋ます形語幹＋する】（お持ちしましょうか）です。「お持ちになる」は相手の動作を高める尊敬語。"
       },
       {
         id: 29,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "明日、先生の 研究室へ 何時に （  ）よろしいでしょうか。[cite: 7]",
+        q: "明日、先生の 研究室へ 何時に （  ）よろしいでしょうか。",
         options: ["いらっしゃれば", "まいれば", "うかがえば", "おいでになれば"],
         ans: 3,
-        exp: "【正解：3 (うかがえば)】<br>自分が先生の研究室（目上の場所）へ行く・訪問する動作なので、「行く・訪ねる」の謙譲語『伺う（うかがえば）』を用います[cite: 7]。「いらっしゃる」「おいでになる」は尊敬語[cite: 7]。"
+        exp: "【正解：3 (うかがえば)】<br>自分が先生の研究室（目上の場所）へ行く・訪問する動作なので、「行く・訪ねる」の謙譲語『伺う（うかがえば）』を用います。「いらっしゃる」「おいでになる」は尊敬語。"
       },
       {
         id: 30,
         part: "第2部：受身・使役・授受表現・敬語",
-        q: "ちょっと 実家の 母に 電話を （  ）んですが、ここで かけても いいですか。[cite: 7]",
+        q: "ちょっと 実家の 母に 電話を （  ）んですが、ここで かけても いいですか。",
         options: ["かけたい", "おかけしたい", "おかけになりたい", "かけられたい"],
         ans: 1,
-        exp: "【正解：1 (かけたい)】<br>身内（自分の母）に対する自分の行為には謙譲表現（お〜する）は使いません[cite: 7]。聞き手に対して過剰で誤った敬語を避け、普通に『かけたい』とするのが正確な日本語です[cite: 7]。"
+        exp: "【正解：1 (かけたい)】<br>身内（自分の母）に対する自分の行為には謙譲表現（お〜する）は使いません。聞き手に対して過剰で誤った敬語を避け、普通に『かけたい』とするのが正確な日本語です。"
       },
 
       // 第3部：助詞・名詞化「の」・特定表現 (問31〜問45)
       {
         id: 31,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "夫は お酒（  ）全然 飲めません。[cite: 7]",
+        q: "夫は お酒（  ）全然 飲めません。",
         options: ["を", "が", "に", "で"],
         ans: 2,
-        exp: "【正解：2 (が)】<br>可能動詞（飲める・飲めない）の対象を表す助詞は原則として『が』を用います（お酒が飲めない）[cite: 7]。"
+        exp: "【正解：2 (が)】<br>可能動詞（飲める・飲めない）の対象を表す助詞は原則として『が』を用います（お酒が飲めない）。"
       },
       {
         id: 32,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "この はさみは、硬い 物を 切る（  ）使います。[cite: 7]",
+        q: "この はさみは、硬い 物を 切る（  ）使います。",
         options: ["のを", "のに", "のは", "のが"],
         ans: 2,
-        exp: "【正解：2 (のに)】<br>道具や手段の用途・目的を表す文型は【動詞辞書形＋のに＋使う／便利だ／役に立つ】です[cite: 7]。「切るのに使います」[cite: 7]。"
+        exp: "【正解：2 (のに)】<br>道具や手段の用途・目的を表す文型は【動詞辞書形＋のに＋使う／便利だ／役に立つ】です。「切るのに使います」。"
       },
       {
         id: 33,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "私は 休みの日、一人で 映画を 見る（  ）大好きです。[cite: 7]",
+        q: "私は 休みの日、一人で 映画を 見る（  ）大好きです。",
         options: ["のを", "のに", "のが", "のは"],
         ans: 3,
-        exp: "【正解：3 (のが)】<br>感情や好悪（好き・嫌い）の対象を表す名詞化は【動詞辞書形＋のが＋好き／大好き】です[cite: 7]。「映画を見るのが大好き」[cite: 7]。"
+        exp: "【正解：3 (のが)】<br>感情や好悪（好き・嫌い）の対象を表す名詞化は【動詞辞書形＋のが＋好き／大好き】です。「映画を見るのが大好き」。"
       },
       {
         id: 34,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "山田さんは 足が 長いので、歩く（  ）とても 速いです。[cite: 7]",
+        q: "山田さんは 足が 長いので、歩く（  ）とても 速いです。",
         options: ["のを", "のが", "のは", "のに"],
         ans: 2,
-        exp: "【正解：2 (のが)】<br>動作の速度・能力・巧拙（速い・遅い・上手・下手）を評価する対象は【動詞辞書形＋のが＋速い】となります[cite: 7]。"
+        exp: "【正解：2 (のが)】<br>動作の速度・能力・巧拙（速い・遅い・上手・下手）を評価する対象は【動詞辞書形＋のが＋速い】となります。"
       },
       {
         id: 35,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "急いで 家を 出たので、鍵を かける（  ）忘れました。[cite: 7]",
+        q: "急いで 家を 出たので、鍵を かける（  ）忘れました。",
         options: ["のを", "のが", "のは", "のに"],
         ans: 1,
-        exp: "【正解：1 (のを)】<br>行為そのものを目的語にとり「〜を忘れる」と述べる構文は【動詞辞書形＋のを＋忘れる】です[cite: 7]。「鍵をかけるのを忘れました」[cite: 7]。"
+        exp: "【正解：1 (のを)】<br>行為そのものを目的語にとり「〜を忘れる」と述べる構文は【動詞辞書形＋のを＋忘れる】です。「鍵をかけるのを忘れました」。"
       },
       {
         id: 36,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "外国で 一人で 病気に なる（  ）とても 心細いです。[cite: 7]",
+        q: "外国で 一人で 病気に なる（  ）とても 心細いです。",
         options: ["のを", "のが", "のは", "のに"],
         ans: 3,
-        exp: "【正解：3 (のは)】<br>事態全体を文の主題（テーマ）として取り上げ、それについての客観的評価や感想を述べる場合は【動詞辞書形＋のは＋心細い／大変だ】を用います[cite: 7]。"
+        exp: "【正解：3 (のは)】<br>事態全体を文の主題（テーマ）として取り上げ、それについての客観的評価や感想を述べる場合は【動詞辞書形＋のは＋心細い／大変だ】を用います。"
       },
       {
         id: 37,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "夜遅くに 甘い 物を たくさん 食べる（  ）体に よくありません。[cite: 7]",
+        q: "夜遅くに 甘い 物を たくさん 食べる（  ）体に よくありません。",
         options: ["のを", "のが", "のは", "のに"],
         ans: 3,
-        exp: "【正解：3 (のは)】<br>客観的な真理・健康への影響などの主題を提示する文型は【動詞辞書形＋のは＋体に悪い／大切だ】です[cite: 7]。「食べるのは体に良くない」[cite: 7]。"
+        exp: "【正解：3 (のは)】<br>客観的な真理・健康への影響などの主題を提示する文型は【動詞辞書形＋のは＋体に悪い／大切だ】です。「食べるのは体に良くない」。"
       },
       {
         id: 38,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "すみません、この 漢字は ひらがなで 何（  ）読みますか。[cite: 7]",
+        q: "すみません、この 漢字は ひらがなで 何（  ）読みますか。",
         options: ["を", "で", "と", "に"],
         ans: 3,
-        exp: "【正解：3 (と)】<br>読み方・発音・呼称の内容や引用を表す格助詞は『と』を用います（「何と読みますか」「何と書きますか」）[cite: 7]。「何で」は手段や理由を尋ねる表現になってしまいます[cite: 7]。"
+        exp: "【正解：3 (と)】<br>読み方・発音・呼称の内容や引用を表す格助詞は『と』を用います（「何と読みますか」「何と書きますか」）。「何で」は手段や理由を尋ねる表現になってしまいます。"
       },
       {
         id: 39,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "私は 日本の 歴史や 文化（  ）とても 興味が あります。[cite: 7]",
+        q: "私は 日本の 歴史や 文化（  ）とても 興味が あります。",
         options: ["を", "に", "で", "が"],
         ans: 2,
-        exp: "【正解：2 (に)】<br>関心や興味の向かう対象を示す助詞は『に』を用います（【〜に興味がある】）[cite: 7]。「〜を興味がある」とは言えません[cite: 7]。"
+        exp: "【正解：2 (に)】<br>関心や興味の向かう対象を示す助詞は『に』を用います（【〜に興味がある】）。「〜を興味がある」とは言えません。"
       },
       {
         id: 40,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "この アニメは、子どもだけでなく 大人（  ）人気が あります。[cite: 7]",
+        q: "この アニメは、子どもだけでなく 大人（  ）人気が あります。",
         options: ["を", "に", "で", "と"],
         ans: 2,
-        exp: "【正解：2 (に)】<br>支持や人気が誰に向かっているかという対象・方向性を示す助詞は『に』を用います（【〜に人気がある】）[cite: 7]。"
+        exp: "【正解：2 (に)】<br>支持や人気が誰に向かっているかという対象・方向性を示す助詞は『に』を用います（【〜に人気がある】）。"
       },
       {
         id: 41,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "昨日、弟と ゲームの ことで （  ）して しまいました。[cite: 7]",
+        q: "昨日、弟と ゲームの ことで （  ）して しまいました。",
         options: ["けんか", "せわ", "しょうかい", "よやく"],
         ans: 1,
-        exp: "【正解：1 (けんか)】<br>「人と〜のことで…する」という文脈で、意見の衝突や争いを表すコロケーションは『喧嘩（けんか）する』です[cite: 7]。"
+        exp: "【正解：1 (けんか)】<br>「人と〜のことで…する」という文脈で、意見の衝突や争いを表すコロケーションは『喧嘩（けんか）する』です。"
       },
       {
         id: 42,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "来週の 会議は、何曜日（  ）しましょうか。[cite: 7]",
+        q: "来週の 会議は、何曜日（  ）しましょうか。",
         options: ["で", "に", "を", "と"],
         ans: 2,
-        exp: "【正解：2 (に)】<br>会議の日時などを選択・決定する表現は【名詞＋にする】を用います（「何曜日にしましょうか」「金曜日にします」）[cite: 7]。"
+        exp: "【正解：2 (に)】<br>会議の日時などを選択・決定する表現は【名詞＋にする】を用います（「何曜日にしましょうか」「金曜日にします」）。"
       },
       {
         id: 43,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "母より 父の （  ）が うまいです。[cite: 7]",
+        q: "母より 父の （  ）が うまいです。",
         options: ["料理の ほう", "ほうが 料理", "ほうの 料理", "料理が ほう"],
         ans: 1,
-        exp: "【正解：1 (料理の ほう)】<br>比較構文において「Aより Bの［名詞］のほうが〜」という語順をとります（「母より 父の料理のほうがうまい」）[cite: 7]。"
+        exp: "【正解：1 (料理の ほう)】<br>比較構文において「Aより Bの［名詞］のほうが〜」という語順をとります（「母より 父の料理のほうがうまい」）。"
       },
       {
         id: 44,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "私の 兄は、歌を 歌う（  ）とても 上手です。[cite: 7]",
+        q: "私の 兄は、歌を 歌う（  ）とても 上手です。",
         options: ["のを", "のに", "のが", "のは"],
         ans: 3,
-        exp: "【正解：3 (のが)】<br>技能・能力の巧拙を表す形容詞（上手・下手・得意・苦手）の対象は【動詞辞書形＋のが＋上手】です[cite: 7]。「歌を歌うのが上手」[cite: 7]。"
+        exp: "【正解：3 (のが)】<br>技能・能力の巧拙を表す形容詞（上手・下手・得意・苦手）の対象は【動詞辞書形＋のが＋上手】です。「歌を歌うのが上手」。"
       },
       {
         id: 45,
         part: "第3部：助詞・名詞化「の」・特定表現",
-        q: "会社へ 行く （  ）に、郵便局に 寄って 手紙を 出しました。[cite: 7]",
+        q: "会社へ 行く （  ）に、郵便局に 寄って 手紙を 出しました。",
         options: ["あいだ", "ながさ", "とちゅう", "まんなか"],
         ans: 3,
-        exp: "【正解：3 (とちゅう)】<br>目的地へ移動するプロセスの道中を表す表現は【動詞辞書形＋途中に／途中で】です[cite: 7]。「会社へ行く途中に」[cite: 7]。「間（あいだ）」は継続的時間区間を表すため1回限りの寄り道には不適[cite: 7]。"
+        exp: "【正解：3 (とちゅう)】<br>目的地へ移動するプロセスの道中を表す表現は【動詞辞書形＋途中に／途中で】です。「会社へ行く途中に」。「間（あいだ）」は継続的時間区間を表すため1回限りの寄り道には不適。"
       },
 
       // 第4部：活用・文型接続 (問46〜問55)
       {
         id: 46,
         part: "第4部：活用・文型接続",
-        q: "来年、日本の 大学を 受験（  ）と 思っています。[cite: 7]",
+        q: "来年、日本の 大学を 受験（  ）と 思っています。",
         options: ["する", "しよう", "して", "した"],
         ans: 2,
-        exp: "【正解：2 (しよう)】<br>あらかじめ前もって考えている意志・計画を表す文型は【動詞意向形＋と思っています】です[cite: 7]。第3グループ動詞「する」の意向形は『しよう』です[cite: 7]。「すると〜」は直前の思いつきを表します[cite: 7]。"
+        exp: "【正解：2 (しよう)】<br>あらかじめ前もって考えている意志・計画を表す文型は【動詞意向形＋と思っています】です。第3グループ動詞「する」の意向形は『しよう』です。「すると〜」は直前の思いつきを表します。"
       },
       {
         id: 47,
         part: "第4部：活用・文型接続",
-        q: "ご飯を （  ）あとで、薬を 飲んで ください。[cite: 7]",
+        q: "ご飯を （  ）あとで、薬を 飲んで ください。",
         options: ["食べる", "食べた", "食べて", "食べます"],
         ans: 2,
-        exp: "【正解：2 (食べた)】<br>ある動作が完了した後に次の動作を行う時間的前後関係を表す文型は【動詞た形＋あとで】（または名詞＋のあとで）です[cite: 7]。「食べたあとで」[cite: 7]。"
+        exp: "【正解：2 (食べた)】<br>ある動作が完了した後に次の動作を行う時間的前後関係を表す文型は【動詞た形＋あとで】（または名詞＋のあとで）です。「食べたあとで」。"
       },
       {
         id: 48,
         part: "第4部：活用・文型接続",
-        q: "この ケーキは、甘くて とても おいし（  ）ですね。[cite: 7]",
+        q: "この ケーキは、甘くて とても おいし（  ）ですね。",
         options: ["いそう", "さそう", "だそう", "くそう"],
         ans: 2,
-        exp: "【正解：2 (さそう)】<br>見た目からの推測を表す様態の「〜そうだ」は、い形容詞の語幹に接続します[cite: 7]。「おいしい」は語幹「おいし」に接続して「おいしそう」となります[cite: 7]。設問の空欄直前が「おいし（ ）」で、「そう」の接続語尾を選ぶ問いとして『さそう』が正解[cite: 7]（良さそう/美味しそう）[cite: 7]。"
+        exp: "【正解：2 (さそう)】<br>見た目からの推測を表す様態の「〜そうだ」は、い形容詞の語幹に接続します。「おいしい」は語幹「おいし」に接続して「おいしそう」となります。設問の空欄直前が「おいし（ ）」で、「そう」の接続語尾を選ぶ問いとして『さそう』が正解（良さそう/美味しそう）。"
       },
       {
         id: 49,
         part: "第4部：活用・文型接続",
-        q: "午後から 天気が （  ）そうですよ。傘を 持って 行きましょう。[cite: 7]",
+        q: "午後から 天気が （  ）そうですよ。傘を 持って 行きましょう。",
         options: ["わるい", "わる", "わるく", "わるさ"],
         ans: 1,
-        exp: "【正解：1 (わるい)】<br>天気予報など外部の情報源から聞いた話を伝える【伝聞の〜そうだ】は普通形接続です[cite: 7]。い形容詞は基本形のまま接続するため『悪いそうですよ』となります[cite: 7]。語幹＋そう（悪そう）は様態推測になってしまいます[cite: 7]。"
+        exp: "【正解：1 (わるい)】<br>天気予報など外部の情報源から聞いた話を伝える【伝聞の〜そうだ】は普通形接続です。い形容詞は基本形のまま接続するため『悪いそうですよ』となります。語幹＋そう（悪そう）は様態推測になってしまいます。"
       },
       {
         id: 50,
         part: "第4部：活用・文型接続",
-        q: "新幹線に 乗り（  ）ように、早めに 家を 出ました。[cite: 7]",
+        q: "新幹線に 乗り（  ）ように、早めに 家を 出ました。",
         options: ["おくれない", "おくれなく", "おくれないで", "おくれた"],
         ans: 1,
-        exp: "【正解：1 (おくれない)】<br>目的を表す文型【〜ように】の前には、無意志動詞の可能形・辞書形または【ない形】が接続します[cite: 7]。「乗り遅れないように」[cite: 7]。「遅れないで」は様態（〜しないで…する）なので不適[cite: 7]。"
+        exp: "【正解：1 (おくれない)】<br>目的を表す文型【〜ように】の前には、無意志動詞の可能形・辞書形または【ない形】が接続します。「乗り遅れないように」。「遅れないで」は様態（〜しないで…する）なので不適。"
       },
       {
         id: 51,
         part: "第4部：活用・文型接続",
-        q: "医者に「お酒を やめなさい」と 言われたので、もう 飲まない（  ）。[cite: 7]",
+        q: "医者に「お酒を やめなさい」と 言われたので、もう 飲まない（  ）。",
         options: ["ことに しました", "つもりでした", "ように しました", "ことが あります"],
         ans: 1,
-        exp: "【正解：1 (ことに しました)】<br>自分の自発的な決意・決定を表す文型は【動詞辞書形／ない形＋ことにする】です[cite: 7]。「飲まないことにしました」[cite: 7]。「つもりでした」は過去の意図，「ことが あります」は経験を表します[cite: 7]。"
+        exp: "【正解：1 (ことに しました)】<br>自分の自発的な決意・決定を表す文型は【動詞辞書形／ない形＋ことにする】です。「飲まないことにしました」。「つもりでした」は過去の意図，「ことが あります」は経験を表します。"
       },
       {
         id: 52,
         part: "第4部：活用・文型接続",
-        q: "インターネットを 使う 人は、これからも ますます 増えて（  ）でしょう。[cite: 7]",
+        q: "インターネットを 使う 人は、これからも ますます 増えて（  ）でしょう。",
         options: ["くる", "いく", "なる", "いる"],
         ans: 2,
-        exp: "【正解：2 (いく)】<br>現在から未来に向かって変化が継続して進行していく時間的推移は【動詞て形＋いく】で表します[cite: 7]。「増えていくでしょう」[cite: 7]。「てくる」は過去から現在への変化[cite: 7]。"
+        exp: "【正解：2 (いく)】<br>現在から未来に向かって変化が継続して進行していく時間的推移は【動詞て形＋いく】で表します。「増えていくでしょう」。「てくる」は過去から現在への変化。"
       },
       {
         id: 53,
         part: "第4部：活用・文型接続",
-        q: "スープが 冷めて しまったので、電子レンジで （  ）してください。[cite: 7]",
+        q: "スープが 冷めて しまったので、電子レンジで （  ）してください。",
         options: ["あつく", "あたたかく", "あたたかい", "あたたかに"],
         ans: 2,
-        exp: "【正解：2 (あたたかく)】<br>い形容詞（あたたかい）を副詞化して「する（人為的変化）」に接続させるには語尾を『く』に変えます（【〜くする】）[cite: 7]。「あたたかくしてください」[cite: 7]。「あたたかに」はな形容詞の形なので誤り[cite: 7]。"
+        exp: "【正解：2 (あたたかく)】<br>い形容詞（あたたかい）を副詞化して「する（人為的変化）」に接続させるには語尾を『く』に変えます（【〜くする】）。「あたたかくしてください」。「あたたかに」はな形容詞の形なので誤り。"
       },
       {
         id: 54,
         part: "第4部：活用・文型接続",
-        q: "この 辞書は 説明が 難しくて、初心者には （  ）にくいです。[cite: 7]",
+        q: "この 辞書は 説明が 難しくて、初心者には （  ）にくいです。",
         options: ["使う", "使い", "使って", "使わ"],
         ans: 2,
-        exp: "【正解：2 (使い)】<br>動作の難易度を表す文型は【動詞ます形語幹＋にくい／やすい】です[cite: 7]。「使う」のます形語幹は『使い』➔「使いにくい」[cite: 7]。"
+        exp: "【正解：2 (使い)】<br>動作の難易度を表す文型は【動詞ます形語幹＋にくい／やすい】です。「使う」のます形語幹は『使い』➔「使いにくい」。"
       },
       {
         id: 55,
         part: "第4部：活用・文型接続",
-        q: "たった今、駅に （  ）ばかりですから、あと 10分で 着きます。[cite: 7]",
+        q: "たった今、駅に （  ）ばかりですから、あと 10分で 着きます。",
         options: ["着く", "着いた", "着いて", "着き"],
         ans: 2,
-        exp: "【正解：2 (着いた)】<br>動作が完了した直後であることを表すアスペクト文型は【動詞た形＋ばかり】です[cite: 7]。「駅に着いたばかり」[cite: 7]。「たった今」との強い呼応関係があります[cite: 7]。"
+        exp: "【正解：2 (着いた)】<br>動作が完了した直後であることを表すアスペクト文型は【動詞た形＋ばかり】です。「駅に着いたばかり」。「たった今」との強い呼応関係があります。"
       },
 
       // 第5部：条件表現・時の従属節 (問56〜問65)
       {
         id: 56,
         part: "第5部：条件表現・時の従属節",
-        q: "日本へ （  ）、きれいな 写真を たくさん 撮って きます。[cite: 7]",
+        q: "日本へ （  ）、きれいな 写真を たくさん 撮って きます。",
         options: ["行けば", "行ったら", "行くと", "行くなら"],
         ans: 2,
-        exp: "【正解：2 (行ったら)】<br>後件が意志的動作（撮ってきます）の場合、前件の動作動詞に「〜ば」や「〜と」は接続できません（後件制約）[cite: 7]。移動が完了した後に写真をとる時間的継起を表す『〜たら』が唯一正解です[cite: 7]。"
+        exp: "【正解：2 (行ったら)】<br>後件が意志的動作（撮ってきます）の場合、前件の動作動詞に「〜ば」や「〜と」は接続できません（後件制約）。移動が完了した後に写真をとる時間的継起を表す『〜たら』が唯一正解です。"
       },
       {
         id: 57,
         part: "第5部：条件表現・時の従属節",
-        q: "春に （  ）、近所の 桜が きれいに 咲きます。[cite: 7]",
+        q: "春に （  ）、近所の 桜が きれいに 咲きます。",
         options: ["なれば", "なったら", "なると", "なるなら"],
         ans: 3,
-        exp: "【正解：3 (なると)】<br>季節の推移や自然現象など、前件が成立すれば必ず必然的・自動的に後件が起こる恒常的条件には【〜と】が最適です[cite: 7]。「春になると、桜が咲きます」[cite: 7]。"
+        exp: "【正解：3 (なると)】<br>季節の推移や自然現象など、前件が成立すれば必ず必然的・自動的に後件が起こる恒常的条件には【〜と】が最適です。「春になると、桜が咲きます」。"
       },
       {
         id: 58,
         part: "第5部：条件表現・時の従属節",
-        q: "明日 雨が （  ）、サッカーの 試合は 中止に なります。[cite: 7]",
+        q: "明日 雨が （  ）、サッカーの 試合は 中止に なります。",
         options: ["ふれば", "ふったら", "ふると", "ふるなら"],
         ans: 2,
-        exp: "【正解：2 (ふったら)】<br>将来の1回限りの不確定な事態を仮定し、日常会話でその結果を述べる条件表現には『〜たら』が最も自然です[cite: 7]。「明日雨が降ったら」[cite: 7]。"
+        exp: "【正解：2 (ふったら)】<br>将来の1回限りの不確定な事態を仮定し、日常会話でその結果を述べる条件表現には『〜たら』が最も自然です。「明日雨が降ったら」。"
       },
       {
         id: 59,
         part: "第5部：条件表現・時の従属節",
-        q: "今朝、学校へ （  ）とき、駅の 階段で 転んで しまいました。[cite: 7]",
+        q: "今朝、学校へ （  ）とき、駅の 階段で 転んで しまいました。",
         options: ["来た", "来る", "来て", "来ている"],
         ans: 2,
-        exp: "【正解：2 (来る)】<br>転んだ時点ではまだ学校に到着しておらず、移動プロセスの途中にいます[cite: 7]。目的地に到達する前の移動中の出来事は辞書形【来るとき】で表します[cite: 7]。「来たとき」だと学校に着いた後の出来事になってしまいます[cite: 7]。"
+        exp: "【正解：2 (来る)】<br>転んだ時点ではまだ学校に到着しておらず、移動プロセスの途中にいます。目的地に到達する前の移動中の出来事は辞書形【来るとき】で表します。「来たとき」だと学校に着いた後の出来事になってしまいます。"
       },
       {
         id: 60,
         part: "第5部：条件表現・時の従属節",
-        q: "家を （  ）とき、窓を 閉めるのを 忘れました。[cite: 7]",
+        q: "家を （  ）とき、窓を 閉めるのを 忘れました。",
         options: ["出た", "出る", "出て", "出ている"],
         ans: 2,
-        exp: "【正解：2 (出る)】<br>外出する動作の直前・その時点での意識なので辞書形【出るとき】を用います[cite: 7]。「家を出たとき」ではすでに外出を完了してしまっています[cite: 7]。"
+        exp: "【正解：2 (出る)】<br>外出する動作の直前・その時点での意識なので辞書形【出るとき】を用います。「家を出たとき」ではすでに外出を完了してしまっています。"
       },
       {
         id: 61,
         part: "第5部：条件表現・時の従属節",
-        q: "外国へ （  ）とき、空港の 免税店で お土産を 買いました。[cite: 7]",
+        q: "外国へ （  ）とき、空港の 免税店で お土産を 買いました。",
         options: ["行った", "行く", "行って", "行かない"],
         ans: 2,
-        exp: "【正解：2 (行く)】<br>免税店で買い物をした段階ではまだ日本国内の空港におり、外国へ到着していません[cite: 7]。移動完了前の段階なので辞書形【行くとき】を用います[cite: 7]。"
+        exp: "【正解：2 (行く)】<br>免税店で買い物をした段階ではまだ日本国内の空港におり、外国へ到着していません。移動完了前の段階なので辞書形【行くとき】を用います。"
       },
       {
         id: 62,
         part: "第5部：条件表現・時の従属節",
-        q: "辞書を 見ても 意味が （  ）、いつでも 先生に 聞いて ください。[cite: 7]",
+        q: "辞書を 見ても 意味が （  ）、いつでも 先生に 聞いて ください。",
         options: ["わからなければ", "わからなかったら", "わからないと", "わからないなら"],
         ans: 2,
-        exp: "【正解：2 (わからなかったら)】<br>後件が依頼・指示（〜てください）の場合、「と」や「ば」は使えません[cite: 7]。働きかけ表現を後件に置ける仮定条件は『〜たら（わからなかったら）』です[cite: 7]。"
+        exp: "【正解：2 (わからなかったら)】<br>後件が依頼・指示（〜てください）の場合、「と」や「ば」は使えません。働きかけ表現を後件に置ける仮定条件は『〜たら（わからなかったら）』です。"
       },
       {
         id: 63,
         part: "第5部：条件表現・時の従属節",
-        q: "値段が （  ）、この パソコンを 買いたいと 思います。[cite: 7]",
+        q: "値段が （  ）、この パソコンを 買いたいと 思います。",
         options: ["安ければ", "安かったら", "安いと", "安いなら"],
         ans: 1,
-        exp: "【正解：1 (安ければ)】<br>前件が状態性述語（形容詞「安い」）の場合、「〜ば」の後件に希望（〜たい）や意志を置くことができます[cite: 7]。「安ければ買いたい」[cite: 7]。「〜と」は後件に希望を置けません[cite: 7]。"
+        exp: "【正解：1 (安ければ)】<br>前件が状態性述語（形容詞「安い」）の場合、「〜ば」の後件に希望（〜たい）や意志を置くことができます。「安ければ買いたい」。「〜と」は後件に希望を置けません。"
       },
       {
         id: 64,
         part: "第5部：条件表現・時の従属節",
-        q: "日曜日、もし 時間が （  ）、いっしょに 買い物に 行きませんか。[cite: 7]",
+        q: "日曜日、もし 時間が （  ）、いっしょに 買い物に 行きませんか。",
         options: ["あれ", "あったら", "あると", "あれば"],
         ans: 2,
-        exp: "【正解：2 (あったら)】<br>後件が相手への勧誘・提案（〜ませんか）の場合、仮定条件には「もし」と親和性の高い『〜たら（あったら）』を用います[cite: 7]。「〜と」の後件に勧誘文は置けません[cite: 7]。"
+        exp: "【正解：2 (あったら)】<br>後件が相手への勧誘・提案（〜ませんか）の場合、仮定条件には「もし」と親和性の高い『〜たら（あったら）』を用います。「〜と」の後件に勧誘文は置けません。"
       },
       {
         id: 65,
         part: "第5部：条件表現・時の従属節",
-        q: "この ボタンを （  ）と、おつりと 切符が 出て きます。[cite: 7]",
+        q: "この ボタンを （  ）と、おつりと 切符が 出て きます。",
         options: ["押す", "押した", "押して", "押せば"],
         ans: 1,
-        exp: "【正解：1 (押す)】<br>機械の操作に伴って必然的に作動・結果が生じる条件文は【動詞辞書形＋と】で表します[cite: 7]。「押すと、出てきます」[cite: 7]。「押したと」という形は接続上不可[cite: 7]。"
+        exp: "【正解：1 (押す)】<br>機械の操作に伴って必然的に作動・結果が生じる条件文は【動詞辞書形＋と】で表します。「押すと、出てきます」。「押したと」という形は接続上不可。"
       },
 
       // 第6部：語彙・副詞の使い分け・コロケーション (問66〜問75)
       {
         id: 66,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "10年間 大切に 乗っていた 車が、（  ）動かなく なって しまいました。[cite: 7]",
+        q: "10年間 大切に 乗っていた 車が、（  ）動かなく なって しまいました。",
         options: ["やっと", "とうとう", "ようやく", "ぜひ"],
         ans: 2,
-        exp: "【正解：2 (とうとう)】<br>長い時間の経過の末に、不可逆で残念・好ましくない結末に至った感情を表す副詞は『とうとう』です[cite: 7]。「やっと」「ようやく」は期待していた望ましい結果の達成に使います[cite: 7]。"
+        exp: "【正解：2 (とうとう)】<br>長い時間の経過の末に、不可逆で残念・好ましくない結末に至った感情を表す副詞は『とうとう』です。「やっと」「ようやく」は期待していた望ましい結果の達成に使います。"
       },
       {
         id: 67,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "難しい 試験でしたが、毎晩 勉強して （  ）合格することが できました。[cite: 7]",
+        q: "難しい 試験でしたが、毎晩 勉強して （  ）合格することが できました。",
         options: ["とうとう", "やっと", "ぜんぜん", "すっかり"],
         ans: 2,
-        exp: "【正解：2 (やっと)】<br>長い努力や苦労が実を結び、望ましい目標を達成した安堵・喜びを表す副詞は『やっと（ようやく）』です[cite: 7]。「とうとう」は残念な結末に用いるため不適[cite: 7]。"
+        exp: "【正解：2 (やっと)】<br>長い努力や苦労が実を結び、望ましい目標を達成した安堵・喜びを表す副詞は『やっと（ようやく）』です。「とうとう」は残念な結末に用いるため不適。"
       },
       {
         id: 68,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "1週間 会社を 休みましたが、薬を 飲んで もう （  ）元気になりました。[cite: 7]",
+        q: "1週間 会社を 休みましたが、薬を 飲んで もう （  ）元気になりました。",
         options: ["なかなか", "すっかり", "ほとんど", "ずいぶん"],
         ans: 2,
-        exp: "【正解：2 (すっかり)】<br>病気や怪我が完全に治り、以前の状態へ完全回復したことを表すコロケーションは『すっかり元気になりました』です[cite: 7]。「なかなか」は否定と呼応します[cite: 7]。"
+        exp: "【正解：2 (すっかり)】<br>病気や怪我が完全に治り、以前の状態へ完全回復したことを表すコロケーションは『すっかり元気になりました』です。「なかなか」は否定と呼応します。"
       },
       {
         id: 69,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "スミスさんは 授業中、いつも 先生の 話を （  ）聞いて います。[cite: 7]",
+        q: "スミスさんは 授業中、いつも 先生の 話を （  ）聞いて います。",
         options: ["まっすぐに", "ねっしんに", "だいじに", "ていねいに"],
         ans: 2,
-        exp: "【正解：2 (ねっしんに)】<br>強い集中力と熱意をもって話を聞いたり勉強に取り組む様子を表す副詞は『熱心に（ねっしんに）』です[cite: 7]。「まっすぐに」は物理的な方向や姿勢[cite: 7]。"
+        exp: "【正解：2 (ねっしんに)】<br>強い集中力と熱意をもって話を聞いたり勉強に取り組む様子を表す副詞は『熱心に（ねっしんに）』です。「まっすぐに」は物理的な方向や姿勢。"
       },
       {
         id: 70,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "友達の アパートへ 遊びに 行きましたが、（  ）で 会えませんでした。[cite: 7]",
+        q: "友達の アパートへ 遊びに 行きましたが、（  ）で 会えませんでした。",
         options: ["やすみ", "るす", "あき", "じゃま"],
         ans: 2,
-        exp: "【正解：2 (るす)】<br>住人や本人が家・自席に不在である状態を表す名詞は『留守（るす）』です[cite: 7]。「休み」は会社や学校の公休日・休業日を表します[cite: 7]。"
+        exp: "【正解：2 (るす)】<br>住人や本人が家・自席に不在である状態を表す名詞は『留守（るす）』です。「休み」は会社や学校の公休日・休業日を表します。"
       },
       {
         id: 71,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "手が 滑って、床に 落ちた コップが （  ）しまいました。[cite: 7]",
+        q: "手が 滑って、床に 落ちた コップが （  ）しまいました。",
         options: ["やぶれて", "われて", "おれて", "はずれて"],
         ans: 2,
-        exp: "【正解：2 (われて)】<br>ガラスや陶器など硬い物体が粉々に砕ける自動詞は『割れる（われて）』です[cite: 7]。「破れる」は紙や布，「折れる」は細長い棒状の物[cite: 7]。"
+        exp: "【正解：2 (われて)】<br>ガラスや陶器など硬い物体が粉々に砕ける自動詞は『割れる（われて）』です。「破れる」は紙や布，「折れる」は細長い棒状の物。"
       },
       {
         id: 72,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "事故で 電車が 遅れて、大事な 会議に （  ）しまいました。[cite: 7]",
+        q: "事故で 電車が 遅れて、大事な 会議に （  ）しまいました。",
         options: ["おくれて", "ちこくして", "のりおくれて", "まにあって"],
         ans: 2,
-        exp: "【正解：2 (ちこくして)】<br>定刻が決まっている会議・授業・集合に遅れる行為を表す名詞・サ変動詞は『遅刻（ちこく）する』です[cite: 7]。「乗り遅れる」は電車や飛行機に間に合わないこと[cite: 7]。"
+        exp: "【正解：2 (ちこくして)】<br>定刻が決まっている会議・授業・集合に遅れる行為を表す名詞・サ変動詞は『遅刻（ちこく）する』です。「乗り遅れる」は電車や飛行機に間に合わないこと。"
       },
       {
         id: 73,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "危ないですから、道の （  ）に 車を 止めないで ください。[cite: 7]",
+        q: "危ないですから、道の （  ）に 車を 止めないで ください。",
         options: ["あいだ", "まんなか", "とちゅう", "へん"],
         ans: 2,
-        exp: "【正解：2 (まんなか)】<br>単一の空間や道路の中央・ど真ん中を指す名詞は『真ん中（まんなか）』です[cite: 7]。「間（あいだ）」はAとBという2つの物の間の隙間を指します[cite: 7]。"
+        exp: "【正解：2 (まんなか)】<br>単一の空間や道路の中央・ど真ん中を指す名詞は『真ん中（まんなか）』です。「間（あいだ）」はAとBという2つの物の間の隙間を指します。"
       },
       {
         id: 74,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "先生は クラスの 学生全員に、新しい テキストを （  ）。[cite: 7]",
+        q: "先生は クラスの 学生全員に、新しい テキストを （  ）。",
         options: ["あげました", "くばりました", "もらいました", "つたえました"],
         ans: 2,
-        exp: "【正解：2 (くばりました)】<br>1人から多数の対象者へ個々に行き渡るよう配布する動作は『配る（くばりました）』が適切です[cite: 7]。「あげました」は1対1の贈呈ニュアンスが強い表現[cite: 7]。"
+        exp: "【正解：2 (くばりました)】<br>1人から多数の対象者へ個々に行き渡るよう配布する動作は『配る（くばりました）』が適切です。「あげました」は1対1の贈呈ニュアンスが強い表現。"
       },
       {
         id: 75,
         part: "第6部：語彙・副詞の使い分け・コロケーション",
-        q: "風邪を 引いて、熱が 39度まで （  ）ので 病院へ 行きました。[cite: 7]",
+        q: "風邪を 引いて、熱が 39度まで （  ）ので 病院へ 行きました。",
         options: ["さがった", "あがった", "のぼった", "くだった"],
         ans: 2,
-        exp: "【正解：2 (あがった)】<br>体温や気温、数値が急上昇することを表すコロケーションは『熱が上がる（あがった）』です[cite: 7]。「のぼる」は山や階段を登る動作に使います[cite: 7]。"
+        exp: "【正解：2 (あがった)】<br>体温や気温、数値が急上昇することを表すコロケーションは『熱が上がる（あがった）』です。「のぼる」は山や階段を登る動作に使います。"
       }
     ];
 
@@ -1234,10 +1728,12 @@
     function renderQuestion() {
       hasAttemptedWrong = false;
       const q = questions[currentIndex];
+      const meta = questionVisualMeta[q.id] || { theme: "landscape", caption: "【 試 練 の 図 】" };
 
       document.getElementById("hud-progress").textContent = `問 ${currentIndex + 1} / 75`;
       document.getElementById("hud-score").textContent = `初手正解: ${firstTryCorrectCount}`;
       document.getElementById("part-tag").textContent = q.part;
+      document.getElementById("illustration-container").innerHTML = buildComplexArtwork(meta.theme, meta.caption);
       document.getElementById("q-num").textContent = `問${q.id}.`;
       document.getElementById("q-text").textContent = q.q.replace(`問${q.id} `, "");
       
@@ -1262,7 +1758,6 @@
       const q = questions[currentIndex];
 
       if (selectedNum === q.ans) {
-        // Correct Choice
         btnElement.classList.add("correct");
         document.querySelectorAll(".choice-tile").forEach(b => b.disabled = true);
         
@@ -1274,14 +1769,12 @@
           document.getElementById("hud-score").textContent = `初手正解: ${firstTryCorrectCount}`;
         }
 
-        // Show detailed explanation scroll
         document.getElementById("explanation-text").innerHTML = q.exp;
         document.getElementById("explanation-scroll").style.display = "block";
         document.getElementById("hint-msg").innerHTML = "<span style='color:#059669;'>🌸 見事、正解です！</span>";
         document.getElementById("next-btn").style.display = "block";
 
       } else {
-        // Wrong Choice -> Play Taiko, mark red, keep others enabled for re-try
         hasAttemptedWrong = true;
         playTaiko();
         btnElement.classList.add("wrong");
@@ -1315,7 +1808,6 @@
       renderQuestion();
     }
 
-    // Catalog (巻物目録) Navigation
     function openCatalog() {
       playHyoshigi();
       const grid = document.getElementById("catalog-pills");
@@ -1342,7 +1834,6 @@
       document.getElementById("catalog-modal").style.display = "none";
     }
 
-    // Drifting Sakura Petals Canvas
     const canvas = document.getElementById("sakura-canvas");
     const ctx = canvas.getContext("2d");
     let petals = [];
